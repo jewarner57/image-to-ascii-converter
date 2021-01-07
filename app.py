@@ -1,6 +1,7 @@
 from PIL import Image
 
 im = Image.open('converter-test-2.jpg')
+im = im.convert('RGB')
 
 raw_pixels = list(im.getdata())
 width, height = im.size
@@ -9,14 +10,17 @@ pixels = [raw_pixels[i * width:(i + 1) * width] for i in range(height)]
 # print(pixels)
 
 
-def make_image_ascii_string(pixels, width):
-    """Given a list of pixels, returns the ascii representation of them"""
+def make_image_ascii_string(pixels, width, height_reduction_increase):
+    """Given a list of pixels, returns the ascii representation of them
+    Takes the pixels of the image, the character length of the ascii result
+    and the height_reduction_factor which is a float from 0.1-1"""
 
     # get a list of single digit grayscale colors for each pixel
     grayscale_pixel_list = make_grayscale_pixel_color_list(pixels)
 
     # reduce the images size to the given max width and height
-    reduced_pixels = reduce_image_size(grayscale_pixel_list, width)
+    reduced_pixels = reduce_image_size(
+        grayscale_pixel_list, width, height_reduction_increase)
 
     # get the string representation of the image
     image_text = make_ascii_string_from_grayscale(reduced_pixels)
@@ -28,38 +32,36 @@ def make_image_ascii_string(pixels, width):
         print(row_string)
 
 
-def reduce_image_size(pixels, maxwidth):
+def reduce_image_size(pixels, maxwidth, height_reduction_increase):
 
     image_width = len(pixels[0])
     image_height = len(pixels)
 
-    print(image_width)
-    print(image_height)
-
     height_ratio = width/height
 
     width_reduction_factor = int(image_width/maxwidth)
-    height_reduction_factor = int(image_height/(height_ratio * maxwidth))
+    height_reduction_factor = int(
+        (image_height/(height_ratio * maxwidth)/height_reduction_increase))
 
     reduced_list = []
 
-    print(height_reduction_factor)
-
     row = 0
-    while row < len(pixels) - height_reduction_factor:
+    while row < len(pixels) - width_reduction_factor:
         column = 0
         row_list = []
-        while column < len(pixels[0]) - width_reduction_factor:
+        while column < len(pixels[0]) - height_reduction_factor:
 
             group_avg = get_list_avg(
-                pixels[row][column:column + width_reduction_factor])
+                pixels[row][column:column + height_reduction_factor])
 
             row_list.append(group_avg)
 
-            column += width_reduction_factor
+            column += height_reduction_factor
+
+            print(column)
 
         reduced_list.append(row_list)
-        row += height_reduction_factor
+        row += width_reduction_factor
     return reduced_list
 
 
@@ -115,4 +117,4 @@ def get_list_avg(values):
     return avg
 
 
-make_image_ascii_string(pixels, 120)
+make_image_ascii_string(pixels, 80, 0.5)
