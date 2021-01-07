@@ -1,6 +1,6 @@
 from PIL import Image
 
-im = Image.open('converter-test-2.jpg')
+im = Image.open('png test.png')
 im = im.convert('RGB')
 
 raw_pixels = list(im.getdata())
@@ -9,11 +9,15 @@ width, height = im.size
 pixels = [raw_pixels[i * width:(i + 1) * width] for i in range(height)]
 # print(pixels)
 
+ascii_key = ["#", "@", "X", "W", "B", "&", "M", "G",
+             "F", "V", "C", "J", "?", "7", "I", "1",
+             "=", "/", "*", "~", "-", "_"]
+
 
 def make_image_ascii_string(pixels, width, height_reduction_increase):
     """Given a list of pixels, returns the ascii representation of them
     Takes the pixels of the image, the character length of the ascii result
-    and the height_reduction_factor which is a float from 0.1-1"""
+    and the height_reduction_factor which is a float from 0.1-1.0 ."""
 
     # get a list of single digit grayscale colors for each pixel
     grayscale_pixel_list = make_grayscale_pixel_color_list(pixels)
@@ -33,6 +37,8 @@ def make_image_ascii_string(pixels, width, height_reduction_increase):
 
 
 def reduce_image_size(pixels, maxwidth, height_reduction_increase):
+    """reduces the size of an array of pixels so that it matches the given
+    maximum width and height factor."""
 
     image_width = len(pixels[0])
     image_height = len(pixels)
@@ -66,15 +72,15 @@ def reduce_image_size(pixels, maxwidth, height_reduction_increase):
 
 
 def make_ascii_string_from_grayscale(pixels):
+    """converts an array of grayscale rgb numbers (0-255) into ascii chars."""
     ascii_character_list = []
 
     for col in range(0, len(pixels[0])):
         ascii_character_row = []
         for row in range(0, len(pixels)):
-            character = "X"
 
-            if(pixels[row][col] > 127):
-                character = "_"
+            # set the pixel to the corresponding char from the key
+            character = ascii_key[pixels[row][col] % len(ascii_key)-1]
 
             ascii_character_row.append(character)
         ascii_character_list.append(ascii_character_row)
@@ -83,6 +89,8 @@ def make_ascii_string_from_grayscale(pixels):
 
 
 def make_grayscale_pixel_color_list(pixels):
+    """Takes a list of rgb colors and converts them into a grayscale
+    representation."""
 
     pixel_color_list = []
 
@@ -105,7 +113,7 @@ def make_grayscale_pixel_color_list(pixels):
 
 
 def get_list_avg(values):
-    """Returns the average of a given list rounded down"""
+    """Returns the average of a given list rounded down."""
     avg = 0
     count = 0
 
@@ -117,4 +125,4 @@ def get_list_avg(values):
     return avg
 
 
-make_image_ascii_string(pixels, 80, 0.5)
+make_image_ascii_string(pixels, 80, 1)
