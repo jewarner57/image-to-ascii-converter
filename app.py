@@ -12,14 +12,14 @@ pixels = [raw_pixels[i * width:(i + 1) * width] for i in range(height)]
 def make_image_ascii_string(pixels, width):
     """Given a list of pixels, returns the ascii representation of them"""
 
-    # reduce the images size to the given max width and height
-    reduced_pixels = reduce_image_size(pixels, width)
-
     # get a list of single digit grayscale colors for each pixel
-    grayscale_pixel_list = make_grayscale_pixel_color_list(reduced_pixels)
+    grayscale_pixel_list = make_grayscale_pixel_color_list(pixels)
+
+    # reduce the images size to the given max width and height
+    reduced_pixels = reduce_image_size(grayscale_pixel_list, width)
 
     # get the string representation of the image
-    image_text = make_ascii_string_from_grayscale(grayscale_pixel_list)
+    image_text = make_ascii_string_from_grayscale(reduced_pixels)
 
     for row in image_text:
         row_string = ""
@@ -29,7 +29,23 @@ def make_image_ascii_string(pixels, width):
 
 
 def reduce_image_size(pixels, width):
-    return pixels
+    reduction_factor = int(len(pixels)/width)
+
+    reduced_list = []
+
+    for row in range(0, len(pixels)):
+        column = 0
+        row_list = []
+        while column < len(pixels[0]) - reduction_factor:
+            column += reduction_factor
+
+            group_avg = get_list_avg(
+                pixels[row][column:column+reduction_factor])
+            row_list.append(group_avg)
+
+        reduced_list.append(row_list)
+
+    return reduced_list
 
 
 def make_ascii_string_from_grayscale(pixels):
@@ -60,7 +76,7 @@ def make_grayscale_pixel_color_list(pixels):
             pixel_color = pixels[i][j]
 
             # average the R, G, and B values together to get grayscale value
-            color_avg = get_pixel_color_avg(pixel_color)
+            color_avg = get_list_avg(pixel_color)
 
             # add the grayscale value to the row list
             pixel_row.append(color_avg)
@@ -70,17 +86,17 @@ def make_grayscale_pixel_color_list(pixels):
     return pixel_color_list
 
 
-def get_pixel_color_avg(pixel_color):
-    """Returns the color average of a given pixel's rbg tuple"""
-    color_avg = 0
-    color_count = 0
+def get_list_avg(values):
+    """Returns the average of a given list rounded down"""
+    avg = 0
+    count = 0
 
-    for color_val in pixel_color:
-        color_count += 1
-        color_avg += color_val
+    for val in values:
+        count += 1
+        avg += val
 
-    color_avg = int(color_avg / color_count)
-    return color_avg
+    avg = avg // count
+    return avg
 
 
 make_image_ascii_string(pixels, 80)
