@@ -2,9 +2,8 @@
 {% block content %}
 
 <section>
-    <p>upload image here</p>
     <form method='POST' class="pure-form" enctype="multipart/form-data">
-        <h1>Edit Your Bakery Store</h1>
+        <h1>Configure Your Ascii Image</h1>
         <fieldset>
 
             <label for="image">Image</label>
@@ -24,7 +23,14 @@
 
 <section>
     <div class="ascii-display">
-        <p>{{asciiImage}}</p>
+
+        {% for row in asciiImage %}
+        <p>
+            {% for symbol in row %}
+            {{symbol}}
+            {% endfor %}
+        </p>
+        {% endfor %}
     </div>
 </section>
 

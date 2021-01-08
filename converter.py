@@ -9,6 +9,8 @@ char_key_1 = ["#", "@", "X", "W", "B", "&", "M", "G",
 
 char_key_apples = ["#", "", "~", "`"]
 
+char_key_classic = ["@", "&", "%", "#", "(", "/", "*", ",", "."]
+
 
 def make_image_ascii_string(image_path, character_key, width=80, height_reduction_increase=1):
     """Given a list of pixels, returns the ascii representation of them

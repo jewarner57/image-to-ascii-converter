@@ -5,6 +5,9 @@
 * create hero image for home page
 * create about us bio for home page
 * create icon for the website
+* generate a small preview so that the user can see the ascii art without scrolling
+* add way to download ascii art as image or text file
+* add an option to use color in images
 
 ## Doing
 

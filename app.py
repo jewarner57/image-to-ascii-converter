@@ -26,8 +26,10 @@ def convert():
         if image_filepath is not None:
 
             # create the ascii art from the image and send it back
+            char_key = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
+
             ascii_art = make_image_ascii_string(
-                image_filepath, ["#", "$", "~", "_"])
+                image_filepath, char_key, 80, 1)
 
             os.remove(image_filepath)
 
