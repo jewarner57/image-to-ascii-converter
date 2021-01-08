@@ -1,12 +1,6 @@
 from PIL import Image
 
-im = Image.open('./test_images/converter-test-2.jpg')
-im = im.convert('RGB')
 
-raw_pixels = list(im.getdata())
-width, height = im.size
-
-pixels = [raw_pixels[i * width:(i + 1) * width] for i in range(height)]
 # print(pixels)
 
 char_key_1 = ["#", "@", "X", "W", "B", "&", "M", "G",
@@ -16,10 +10,12 @@ char_key_1 = ["#", "@", "X", "W", "B", "&", "M", "G",
 char_key_apples = ["#", "", "~", "`"]
 
 
-def make_image_ascii_string(pixels, character_key, width, height_reduction_increase):
+def make_image_ascii_string(image_path, character_key, width=80, height_reduction_increase=1):
     """Given a list of pixels, returns the ascii representation of them
     Takes the pixels of the image, the character length of the ascii result
     and the height_reduction_factor which is a float from 0.1-1.0 ."""
+
+    pixels = get_image_pixels(image_path)
 
     # get a list of single digit grayscale colors for each pixel
     grayscale_pixel_list = make_grayscale_pixel_color_list(pixels)
@@ -32,25 +28,50 @@ def make_image_ascii_string(pixels, character_key, width, height_reduction_incre
     image_text = make_ascii_string_from_grayscale(
         reduced_pixels, character_key)
 
-    for row in range(0, len(image_text)):
-        row_string = ""
-        for col in range(0, len(image_text[0])):
-            row_string += image_text[row][col]
-        print(row_string)
+    return image_text
+
+    # for row in range(0, len(image_text)):
+    #     row_string = ""
+    #     for col in range(0, len(image_text[0])):
+    #         row_string += image_text[row][col]
+    #     print(row_string)
+
+
+def get_image_pixels(image_path):
+    # open the image
+    im = Image.open(image_path)
+    # convert the image to use rgb format
+    im = im.convert('RGB')
+
+    # get list of raw pixels
+    raw_pixels = list(im.getdata())
+    width, height = im.size
+
+    # process pixel list into a matrix
+    pixels = [raw_pixels[i * width:(i + 1) * width] for i in range(height)]
+
+    return pixels
 
 
 def reduce_image_size(pixels, maxwidth, height_reduction_increase):
     """reduces the size of an array of pixels so that it matches the given
     maximum width and height factor."""
 
+    print("started to reduce")
+
     image_width = len(pixels[0])
     image_height = len(pixels)
 
-    height_ratio = width/height
+    height_ratio = image_width/image_height
 
     width_reduction_factor = int(image_width/maxwidth)
     height_reduction_factor = int(
         (image_height/(height_ratio * maxwidth)/height_reduction_increase))
+
+    if height_reduction_factor < 1:
+        height_reduction_factor = 1
+    if width_reduction_factor < 1:
+        width_reduction_factor = 1
 
     reduced_list = []
 
@@ -129,4 +150,4 @@ def get_list_avg(values):
     return avg
 
 
-make_image_ascii_string(pixels, char_key_apples, 90, 0.5)
+# make_image_ascii_string(pixels, char_key_apples, 90, 0.5)

@@ -6,38 +6,26 @@
     <form method='POST' class="pure-form" enctype="multipart/form-data">
         <h1>Edit Your Bakery Store</h1>
         <fieldset>
-            <div class="form_container">
-                <label for="name">Bakery Name:</label>
-                <input type="text" id="name" name="name" value="{{name}}" placeholder="The Name of Your Bakery"
-                    required="true">
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{email}}" placeholder="bakery@email.com"
-                    required="true">
+            <label for="image">Image</label>
+            <div>
+                <input type="file" id="image" name="image" accept="image/*" value="{{image}}" multiple="false">
+            </div>
 
-                <label for="phonenumber">Phone Number:</label>
-                <input type="number" id="phonenumber" name="phonenumber" value="{{phonenumber}}" required="true">
+            <input type="submit" class="submit" value="Submit!">
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" value="{{address}}" placeholder="" required="true">
-
-                <label for="image">Image</label>
-                <div>
-                    <input type="file" id="image" name="image" accept="image/*" value="{{image}}" multiple="false">
-                </div>
-
-                <label for="desc">Description:</label>
-                <input type="text" id="desc" name="desc" value="{{description}}" placeholder="Store Description"
-                    required="false">
-
-                <input type="submit" class="submit" value="Submit!">
-
-                {% for message in get_flashed_messages() %}
-                <p class="errorText">{{message}}</p>
-                {% endfor %}
+            {% for message in get_flashed_messages() %}
+            <p class="errorText">{{message}}</p>
+            {% endfor %}
             </div>
         </fieldset>
     </form>
+</section>
+
+<section>
+    <div class="ascii-display">
+        <p>{{asciiImage}}</p>
+    </div>
 </section>
 
 {% endblock content %}

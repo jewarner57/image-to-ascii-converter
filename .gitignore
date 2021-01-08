@@ -2,3 +2,4 @@ env/
 .DS_Store
 .env
 test_images/
+__pycache__/
