@@ -12,7 +12,7 @@ char_key_apples = ["#", "", "~", "`"]
 char_key_classic = ["@", "&", "%", "#", "(", "/", "*", ",", "."]
 
 
-def make_image_ascii_string(image_path, character_key, width=80, height_reduction_increase=1):
+def make_image_ascii_string(image_path, character_key, width=80, height=None):
     """Given a list of pixels, returns the ascii representation of them
     Takes the pixels of the image, the character length of the ascii result
     and the height_reduction_factor which is a float from 0.1-1.0 ."""
@@ -24,7 +24,7 @@ def make_image_ascii_string(image_path, character_key, width=80, height_reductio
 
     # reduce the images size to the given max width and height
     reduced_pixels = reduce_image_size(
-        pixel_object_list, width, height_reduction_increase)
+        pixel_object_list, width, height)
 
     # get the string representation of the image
     image_text = make_ascii_string_from_grayscale(
@@ -55,7 +55,7 @@ def get_image_pixels(image_path):
     return pixels
 
 
-def reduce_image_size(pixels, maxwidth, height_reduction_increase):
+def reduce_image_size(pixels, maxwidth, maxheight=None):
     """reduces the size of an array of pixels so that it matches the given
     maximum width and height factor."""
 
@@ -65,8 +65,13 @@ def reduce_image_size(pixels, maxwidth, height_reduction_increase):
     height_ratio = image_width/image_height
 
     width_reduction_factor = int(image_width/maxwidth)
-    height_reduction_factor = int(
-        (image_height/(height_ratio * maxwidth)/height_reduction_increase))
+
+    # if no maxheight is given, make the height proportional to width
+    if maxheight is None:
+        height_reduction_factor = int(
+            (image_height/(height_ratio * maxwidth)))
+    else:
+        height_reduction_factor = int(image_height/maxheight)
 
     if height_reduction_factor < 1:
         height_reduction_factor = 1

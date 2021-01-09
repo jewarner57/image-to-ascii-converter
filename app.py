@@ -25,18 +25,19 @@ def convert():
         # if the user uploaded a valid image
         if image_filepath is not None:
 
-            # create the ascii art from the image and send it back
             char_key = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
-
+            
+            # create the ascii art from the image
             ascii_art = make_image_ascii_string(
-                image_filepath, char_key, 80, 1)
-
+                image_filepath, char_key, 50, 50)
+            
+            # remove the image 
             os.remove(image_filepath)
 
             context = {
                 "asciiImage": ascii_art
             }
-
+            
             return render_template("convert.html", **context)
         else:
             flash("No Image Selected.")

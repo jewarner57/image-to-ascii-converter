@@ -1,5 +1,4 @@
 ## Do
-* allow user to specify height in lines or leave it to default
 * add averaging during height reduction to make columns look smoother
 * create a better symbol key
 * create hero image for home page
@@ -11,10 +10,11 @@
 
 
 ## Doing
-* add an option to use color in images
-
+* build settings ui for convert page
 
 ## Done
+* allow user to specify height in lines or leave it to default
+* add an option to use color in images
 * make flask web server and add bootstrap to base template
 * create a color -> symbol key
 * working ascii converter in python terminal with black and white shading
