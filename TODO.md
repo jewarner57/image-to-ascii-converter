@@ -7,10 +7,11 @@
 * create icon for the website
 * generate a small preview so that the user can see the ascii art without scrolling
 * add way to download ascii art as image or text file
-* add an option to use color in images
+* fix color averager method to work, and remove temp solution
+
 
 ## Doing
-
+* add an option to use color in images
 
 
 ## Done

@@ -26,8 +26,10 @@
 
         {% for row in asciiImage %}
         <p>
-            {% for symbol in row %}
-            {{symbol}}
+            {% for pixel in row %}
+            <span style="color: rgb{{pixel.color}}">
+                {{pixel.char}}
+            </span>
             {% endfor %}
         </p>
         {% endfor %}
