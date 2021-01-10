@@ -1,3 +1,20 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
 .hero-bgr {
     background-image: url("./images/hero-image.png");
     background-repeat: no-repeat;
@@ -13,3 +30,29 @@
     font-weight: bold;
     font-size: 20px;
 }
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 10px;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .slider::-webkit-slider-thumb, .slider::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 30px;
+    background: #4c7aaf;
+    cursor: pointer;
+    border-radius: 15px;
+  }

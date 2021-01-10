@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section>
+    <form method='POST' class="pure-form" enctype="multipart/form-data">
+        <h1>Configure Your Ascii Image</h1>
+        <fieldset>
+
+            <label for="image">View Image</label>
+            <div>
+                <input type="file" id="image" name="image" accept="image/*" value="{{image}}" multiple="false">
+            </div>
+
+            <input type="submit" class="submit" value="Submit!">
+
+            {% for message in get_flashed_messages() %}
+            <p class="errorText">{{message}}</p>
+            {% endfor %}
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+<section>
+    <div class="ascii-display">
+
+        {% for row in asciiImage %}
+        <p>
+            {% for pixel in row %}
+            <span style="color: rgb{{pixel.color}}">
+                {{pixel.char}}
+            </span>
+            {% endfor %}
+        </p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock content %}

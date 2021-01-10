@@ -38,7 +38,7 @@ def convert():
                 "asciiImage": ascii_art
             }
             
-            return render_template("convert.html", **context)
+            return render_template("view.html", **context)
         else:
             flash("No Image Selected.")
             return redirect(url_for("convert"))

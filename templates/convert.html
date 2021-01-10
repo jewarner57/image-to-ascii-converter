@@ -2,23 +2,33 @@
 {% block content %}
 
 <section>
-    <form method='POST' class="pure-form" enctype="multipart/form-data">
-        <h1>Configure Your Ascii Image</h1>
-        <fieldset>
+    <div class="col-12">
+        <h1 class="text-center">Conversion Settings</h1>
+        <div class="col-4 offset-4">
+            <form method='POST' class="form-group" enctype="multipart/form-data">
+                <fieldset>
+                    
+                    <label for="image-width">Image Width</label>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="image-width">
 
-            <label for="image">Image</label>
-            <div>
-                <input type="file" id="image" name="image" accept="image/*" value="{{image}}" multiple="false">
-            </div>
+                    <label for="image-height">Image Height</label>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="image-height">
 
-            <input type="submit" class="submit" value="Submit!">
+                    <label for="image">Image</label>
+                    <div>
+                        <input type="file" class="form-control-file m-2" id="image" name="image" accept="image/*" value="{{image}}" multiple="false">
+                    </div>
+                    <hr>
+                    <input type="submit" class="submit m-2" value="Submit!">
 
-            {% for message in get_flashed_messages() %}
-            <p class="errorText">{{message}}</p>
-            {% endfor %}
-            </div>
-        </fieldset>
-    </form>
+                    {% for message in get_flashed_messages() %}
+                    <p class="errorText">{{message}}</p>
+                    {% endfor %}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </section>
 
 <section>
