@@ -7,6 +7,15 @@ $(function () {
         $(".ascii-display").css({ "font-weight": fontWeight })
     })
 
+    $("#background-color").change(function () {
+
+        color = $("#background-color").val()
+
+        $(".ascii-display").css({ "background-color": color })
+
+    })
+
+    // change the font weight
     $("#font-family").change(function () {
         fontFamilyNum = $("#font-family").val()
         font = ""
