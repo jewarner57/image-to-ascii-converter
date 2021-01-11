@@ -2,7 +2,7 @@ let autoSetHeight = true
 
 $(function () {
     // change upload icon to check on upload
-    $("#image-upload").change(function () {
+    $("#image-upload").on('input', function () {
         $("#upload-icon").html("check")
     })
 
@@ -12,12 +12,12 @@ $(function () {
     })
 
     // modify symbol preview size when sliders are changed
-    $(".slider").change(function () {
+    $(".slider").on('input', function () {
         updateSizePreview()
     })
 
     // disable height input when auto determine height checked
-    $("#proportionalheight").change(function () {
+    $("#proportionalheight").on('input', function () {
         checkAutoSetBox()
     })
 })

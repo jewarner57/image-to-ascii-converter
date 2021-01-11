@@ -1,13 +1,13 @@
 $(function () {
     // change font weight
-    $("#font-weight").change(function () {
+    $("#font-weight").on('input', function () {
 
         fontWeight = $("#font-weight").val()
 
         $(".ascii-display").css({ "font-weight": fontWeight })
     })
 
-    $("#background-color").change(function () {
+    $("#background-color").on('input', function () {
 
         color = $("#background-color").val()
 
