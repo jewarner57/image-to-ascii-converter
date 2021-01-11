@@ -23,7 +23,7 @@ body {
 }
 
 .ascii-display {
-    margin: 20px;
+    margin: 20px auto;
     line-height: 2px;
     font-family: 'Courier New', Courier, monospace;
     white-space: nowrap;
@@ -35,8 +35,8 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: left;
+    overflow-x: auto;
 }
 
 .slider {

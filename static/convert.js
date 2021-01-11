@@ -20,10 +20,12 @@ function updateSizePreview() {
     let charactercount = $("#image-width").val()
     let linecount = $("#image-height").val()
 
+    dimensionDisplay = `<p class="text-center">Width: ${charactercount} Height: ${linecount}</p><hr>`
+
     displayLine = "<p>" + ("* ").repeat(charactercount) + "</p>"
     displayAll = displayLine.repeat(linecount)
 
-    $(".ascii-display").html(displayAll)
+    $(".ascii-display").html(dimensionDisplay + displayAll)
 }
 
 $(document).ready(() => {
