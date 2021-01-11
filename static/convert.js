@@ -13,6 +13,18 @@ $(function () {
     $(".slider").change(function () {
         updateSizePreview()
     })
+
+    // disable height input when auto determine height checked
+    $("#proportionalheight").change(function () {
+        if ($("#image-height").prop('disabled') === false) {
+            $("#image-height").prop('disabled', true);
+            $("#height-slider-container").hide()
+        }
+        else {
+            $("#image-height").prop('disabled', false);
+            $("#height-slider-container").show()
+        }
+    })
 })
 
 function updateSizePreview() {
@@ -25,9 +37,16 @@ function updateSizePreview() {
     displayLine = "<p>" + ("* ").repeat(charactercount) + "</p>"
     displayAll = displayLine.repeat(linecount)
 
-    $(".ascii-display").html(dimensionDisplay + displayAll)
+    $(".dimension-display").html(dimensionDisplay)
+
+    $(".ascii-display").html(displayAll)
 }
 
 $(document).ready(() => {
     updateSizePreview()
+
+    // disable height form on load
+    $("#image-height").prop('disabled', true);
+    $("#height-slider-container").hide()
+    $('#proportionalheight').prop('checked', true);
 })

@@ -14,9 +14,17 @@
                         name="image-width">
 
                     <!-- height range slider -->
-                    <label for="image-height">Max Height (Characters):</label>
-                    <input type="range" min="10" max="200" value="50" class="slider" id="image-height"
-                        name="image-height">
+                    <div id="height-slider-container">
+                        <label for="image-height">Max Height (Characters):</label>
+                        <input type="range" min="10" max="200" value="50" class="slider" id="image-height"
+                            name="image-height">
+                    </div>
+                    <!-- auto set height checkbox -->
+                    <div class="form-check mt-2 ml-2">
+                        <input type="checkbox" class="form-check-input" id="proportionalheight">
+                        <label class="form-check-label ml-2" for="proportionalheight" name="auto-set-height">Auto
+                            Determine Height</label>
+                    </div>
 
                     <div class="setting-toggle-wrapper">
                         <label for="setting-toggle-symbols">Character Set:</label>
@@ -81,6 +89,7 @@
 
 <section>
     <h4 class="text-center">Size Preview</h4>
+    <p class="dimension-display"></p>
     <div class="ascii-display-container">
         <div class="ascii-display">
 

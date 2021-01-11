@@ -139,3 +139,7 @@ body {
 input[type="file"] {
     display: none;
 }
+/* increase checkbox size */
+input[type=checkbox] {
+    transform: scale(1.5);
+}

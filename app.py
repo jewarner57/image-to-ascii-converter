@@ -28,7 +28,7 @@ def convert():
             char_key = request.form.get("charkey")
 
             image_width = int(request.form.get("image-width"))
-            image_height = int(request.form.get("image-height"))
+            image_height = request.form.get("image-height")
 
             if char_key == "" or char_key == None:
                 char_key = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
@@ -36,9 +36,14 @@ def convert():
                 char_key = char_key.split(" ")
 
             # create the ascii art from the image
-            ascii_art = make_image_ascii_string(
-                image_filepath, char_key, image_width, image_height
-            )
+            if image_height is not None:
+                ascii_art = make_image_ascii_string(
+                    image_filepath, char_key, int(image_width), int(image_height)
+                )
+            else:
+                ascii_art = make_image_ascii_string(
+                    image_filepath, char_key, int(image_width)
+                )
 
             # remove the image
             os.remove(image_filepath)
