@@ -25,9 +25,9 @@ body {
 .ascii-display {
     margin: 20px auto;
     line-height: 2px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Source Code Pro', monospace;
     white-space: nowrap;
-    font-weight: bold;
+    font-weight: 400;
     font-size: 20px;
 }
 

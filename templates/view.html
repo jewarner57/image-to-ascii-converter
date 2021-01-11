@@ -10,11 +10,11 @@
             <p class="text-center">Font Settings</p>
             <!-- font weight range slider -->
             <label for="font-weight">Font Weight:</label>
-            <input type="range" min="100" max="900" value="400" class="slider mb-3" id="font-weight">
+            <input type="range" min="100" max="900" value="400" step="100" class="slider mb-3" id="font-weight">
 
-            <label for="font-style">Font:</label>
-            <select id="font-style" class="form-control mb-3">
-                <option value="1">Some Font</option>
+            <label for="font-family">Font:</label>
+            <select id="font-family" class="form-control mb-3">
+                <option value="1">Courier New</option>
                 <option value="2">Some Other Font</option>
             </select>
 
@@ -37,7 +37,6 @@
 <section>
     <div class="ascii-display-container">
         <div class="ascii-display">
-
             {% for row in asciiImage %}
             <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}">{{pixel.char}}</span>{% endfor %}</p>
             {% endfor %}
@@ -46,3 +45,7 @@
 </section>
 
 {% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript" src="../static/view-settings.js"></script>
+{% endblock scripts %}
