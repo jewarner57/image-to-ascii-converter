@@ -4,14 +4,14 @@
 * create about us bio for home page
 * create icon for the website
 * add way to download ascii art as image or text file
+* convert toggle button JS in convert.js into jquery from vanilla hs
 * fix color averager method to work, and remove temp solution
 * deploy
-
+* image upload check should appear if the form starts with an image in it
+  * for example if the user hits the back button the check should be there
+* find a way to allow for custom color picking for the text color of the output
 
 ## Doing
-* create a second page to preview the conversion
-* 
-* 
 * on preview page
   * the color settings on the preview page should change the ascii image's color
     * there should be a button to toggle default or custom and the button should change text when toggled so it would say Default Colors and then when toggled it would say Custom Colors 
@@ -24,6 +24,7 @@
 
 
 ## Done
+* create a second page to preview the conversion
 * build settings ui for convert page
   * on the convert page the sliders for height and width should change the height and width of a preview ascii image for reference
   * there should be a toggle for character sets. text on button should switch between default and custom. 

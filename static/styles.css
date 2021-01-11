@@ -29,7 +29,17 @@ body {
     white-space: nowrap;
     font-weight: 400;
     font-size: 20px;
+    padding-top: 10px;
 }
+
+.ascii-display-black > p > span {
+    color: rgb(0, 0, 0) !important;
+}
+
+.ascii-display-green > p > span {
+    color: rgb(0, 255, 0) !important;
+}
+
 
 .ascii-display-container {
     width: 100%;
@@ -79,6 +89,7 @@ body {
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .setting-toggle-wrapper {
@@ -92,8 +103,15 @@ body {
     text-align: center;
     color: whitesmoke;
     border-radius: 10px;
-    margin: 0 20px;
-    cursor: pointer
+    cursor: pointer;
+
+    /* prevent text highlight */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .setting-toggle-button-select {

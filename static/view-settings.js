@@ -7,6 +7,42 @@ $(function () {
         $(".ascii-display").css({ "font-weight": fontWeight })
     })
 
+    let textColorToggle = 0
+    // change the text color
+    $("#font-color-toggle").click(function () {
+        toggle = $("#font-color-toggle")
+
+        if (textColorToggle === 0) {
+
+            toggle.addClass("setting-toggle-button-deselect")
+            toggle.removeClass("setting-toggle-button-select")
+
+            toggle.html("Black")
+
+            // $("#text-color").removeClass("hidden")
+
+            $(".ascii-display").addClass("ascii-display-black")
+
+            textColorToggle = 1
+
+        }
+        else {
+
+            toggle.removeClass("setting-toggle-button-deselect")
+            toggle.addClass("setting-toggle-button-select")
+
+            toggle.html("Color")
+
+            //$("#text-color").addClass("hidden")
+
+            $(".ascii-display").removeClass("ascii-display-black")
+
+            textColorToggle = 0
+
+        }
+    })
+
+    // change background color
     $("#background-color").on('input', function () {
 
         color = $("#background-color").val()
@@ -15,7 +51,7 @@ $(function () {
 
     })
 
-    // change the font weight
+    // change the font family
     $("#font-family").change(function () {
         fontFamilyNum = $("#font-family").val()
         font = ""

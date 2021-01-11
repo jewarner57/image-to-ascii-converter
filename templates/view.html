@@ -4,7 +4,7 @@
 <section>
     <div class="col-12 py-5">
         <h1 class="text-center">Color and Text Settings</h1>
-        <div class="col-4 offset-4">
+        <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-4">
             <form class="form-group"></form>
 
             <p class="text-center">Font Settings</p>
@@ -23,10 +23,23 @@
             <p class="text-center mt-4">Color Settings</p>
 
             <div class="color-settings">
-                <div class="color-picker mb-4">
-                    <label for="text-color">Text Color: </label>
-                    <input type="color" id="text-color" class="ml-2 color-input col-12">
+
+                <div class="setting-toggle-wrapper">
+                    <label for="setting-toggle-color">Font Color:</label>
+                    <div class="setting-toggle" id="setting-toggle-color">
+
+                        <!-- setting toggle button -->
+                        <div class="setting-toggle-button setting-toggle-button-select" id="font-color-toggle">Color
+                        </div>
+
+                        <!-- color picker -->
+                        <div class="color-picker col-8">
+                            <input type="color" id="text-color" class="ml-2 color-input col-12 hidden">
+                        </div>
+                    </div>
                 </div>
+
+
                 <div class="color-picker">
                     <label for="background-color">Background Color: </label>
                     <input type="color" id="background-color" value="#ffffff" class="ml-2 color-input col-12">
