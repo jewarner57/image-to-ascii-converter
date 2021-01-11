@@ -1,19 +1,6 @@
-
-
-
-
 $(function () {
     // enable tooltips
     $('[data-toggle="tooltip"]').tooltip()
-
-    // change upload icon to check on upload
-    $("#image-upload").change(function () {
-        $("#upload-icon").html("check")
-    })
-
-    $("#submit-image").click(function () {
-        $("#conversion-progress").removeClass("hidden")
-    })
 })
 
 // convert.html

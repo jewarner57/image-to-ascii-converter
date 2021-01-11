@@ -13,7 +13,6 @@
 ## Doing
 * create a second page to preview the conversion
 * 
-* upload image loading bar
 * 
 * build settings ui for convert page
   * on the convert page the sliders for height and width should change the height and width of a preview ascii image for reference
@@ -33,6 +32,7 @@
 
 
 ## Done
+* upload image loading bar
 * allow user to specify height in lines or leave it to default
 * add an option to use color in images
 * make flask web server and add bootstrap to base template
