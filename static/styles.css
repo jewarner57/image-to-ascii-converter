@@ -43,16 +43,62 @@ body {
     border-radius: 10px;
   }
   
-  .slider:hover {
+.slider:hover {
     opacity: 1;
-  }
+}
 
-  .slider::-webkit-slider-thumb, .slider::-moz-range-thumb {
+.slider::-webkit-slider-thumb, .slider::-moz-range-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 15px;
     height: 30px;
-    background: #4c7aaf;
+    background: #3b608a;
     cursor: pointer;
     border-radius: 15px;
-  }
+}
+
+.setting-toggle {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.setting-toggle-wrapper {
+    margin: 20px 0;
+}
+
+.setting-toggle-button {
+    width: 30%;
+    padding: 10px;
+    background-color: #4c7aaf;
+    text-align: center;
+    color: whitesmoke;
+    border-radius: 10px;
+    margin: 0 20px;
+    cursor: pointer
+}
+
+.setting-toggle-button-select {
+    box-shadow: inset 0 0 8px #000000;
+}
+
+.setting-toggle-button-deselect {
+    border-bottom: 4px solid #314f72;
+}
+
+.charkeycustom-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.setting-toggle-select {
+    padding: 5px;
+    width: 60%;
+}
+
+.hidden {
+    display: none;
+}

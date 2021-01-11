@@ -25,8 +25,15 @@ def convert():
         # if the user uploaded a valid image
         if image_filepath is not None:
 
-            char_key = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
-            
+            char_key = request.form.get("charkey")
+
+            print(char_key)
+
+            if char_key == "" or char_key == None:
+                char_key = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
+            else:
+                char_key = char_key.split(" ")
+
             # create the ascii art from the image
             ascii_art = make_image_ascii_string(
                 image_filepath, char_key, 50, 50)

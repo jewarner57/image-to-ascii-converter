@@ -2,24 +2,51 @@
 {% block content %}
 
 <section>
-    <div class="col-12">
+    <div class="col-12 pt-5">
         <h1 class="text-center">Conversion Settings</h1>
         <div class="col-4 offset-4">
             <form method='POST' class="form-group" enctype="multipart/form-data">
                 <fieldset>
                     
-                    <label for="image-width">Image Width</label>
+                    <label for="image-width">Image Width:</label>
                     <input type="range" min="1" max="100" value="50" class="slider" id="image-width">
 
-                    <label for="image-height">Image Height</label>
+                    <label for="image-height">Image Height:</label>
                     <input type="range" min="1" max="100" value="50" class="slider" id="image-height">
 
-                    <label for="image">Image</label>
+                    <div class="setting-toggle-wrapper">
+                        <label for="setting-toggle-symbols">Character Set:</label>
+                        <div class="setting-toggle" id="setting-toggle-symbols">
+
+                            
+                            
+                            <select name="" id="charkeydropdown" class="setting-toggle-select">
+                                    <option value=". , * / ( # % & @">Symbols Classic</option>
+                                    <option value="@ & % # ( / * , .">Symbols Inverted</option>
+                            </select>
+
+                            <div id="charkeycustom" class="charkeycustom-wrapper hidden">
+                                <input type="text" class="setting-toggle-input" name="charkey">
+                            
+
+                                <button type="button" class="btn btn-secondary ml-2" data-toggle="tooltip" data-placement="top" 
+                                title="Write custom character key dark to light with one space between each character">
+                                    ?
+                                </button>
+                            </div>
+                            
+                            
+                            
+                            <div class="setting-toggle-button setting-toggle-button-select" id="charkey-toggle" >Default</div>
+                        </div>
+                    </div>
+
+                    <label for="image">Image:</label>
                     <div>
-                        <input type="file" class="form-control-file m-2" id="image" name="image" accept="image/*" value="{{image}}" multiple="false">
+                        <input type="file" class="btn-secondary btn form-control-file m-2" id="image" name="image" accept="image/*" value="{{image}}" multiple="false">
                     </div>
                     <hr>
-                    <input type="submit" class="submit m-2" value="Submit!">
+                    <input type="submit" class="btn btn-primary submit m-2" value="Submit!">
 
                     {% for message in get_flashed_messages() %}
                     <p class="errorText">{{message}}</p>
@@ -32,18 +59,7 @@
 </section>
 
 <section>
-    <div class="ascii-display">
 
-        {% for row in asciiImage %}
-        <p>
-            {% for pixel in row %}
-            <span style="color: rgb{{pixel.color}}">
-                {{pixel.char}}
-            </span>
-            {% endfor %}
-        </p>
-        {% endfor %}
-    </div>
 </section>
 
 {% endblock content %}
