@@ -4,8 +4,10 @@
 <hr>
 
 ### How to use?
-1. clone the repository and install python dependencies from requrements.txt
-2. navigate to the project directory and run python app.py
+1. clone the repository
+2. navigate to the project's root directory 
+3. install python dependencies from requirements.txt using: ```pip install -r ./requirements.txt```
+4. run: ```python ./app.py```
 
 ### Why? 
   * Ascii converters are common on the internet, but many of them allow for minimal customization and use confusing or text heavy user interfaces to do so.
