@@ -3,3 +3,4 @@ env/
 .env
 test_images/
 __pycache__/
+.vscode/

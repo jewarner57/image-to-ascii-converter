@@ -47,7 +47,7 @@ body {
     opacity: 1;
 }
 
-.slider::-webkit-slider-thumb, .slider::-moz-range-thumb {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 15px;
@@ -56,6 +56,15 @@ body {
     cursor: pointer;
     border-radius: 15px;
 }
+
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 30px;
+    background: #3b608a;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
 
 .setting-toggle {
     display: flex;
@@ -100,5 +109,25 @@ body {
 }
 
 .hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.errorText {
+    color: red;
+}
+
+.imageUpload {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* hide all file upload inputs */
+input[type="file"] {
     display: none;
 }

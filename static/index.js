@@ -1,7 +1,20 @@
-// enable tooltips
+
+
+
+
 $(function () {
+    // enable tooltips
     $('[data-toggle="tooltip"]').tooltip()
-  })
+
+    // change upload icon to check on upload
+    $("#image-upload").change(function () {
+        $("#upload-icon").html("check")
+    })
+
+    $("#submit-image").click(function () {
+        $("#conversion-progress").removeClass("hidden")
+    })
+})
 
 // convert.html
 togglebutton = document.getElementById("charkey-toggle")
@@ -13,12 +26,12 @@ createSettingToggle(togglebutton, settingInput1, settingInput2)
 function createSettingToggle(button, input1, input2) {
     let toggleMode = 0
 
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
         settingInput1 = input1
         settingInput2 = input2
 
         if (toggleMode === 0) {
-            
+
             togglebutton.innerHTML = "Custom"
 
             togglebutton.classList.add("setting-toggle-button-deselect")
@@ -48,6 +61,6 @@ function createSettingToggle(button, input1, input2) {
             toggleMode = 0
         }
 
-        
+
     })
 }

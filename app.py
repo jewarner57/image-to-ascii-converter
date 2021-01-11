@@ -7,14 +7,14 @@ import os
 # App Routes
 
 
-@app.route('/')
+@app.route("/")
 def home():
     """Display the home page"""
 
     return render_template("home.html")
 
 
-@app.route('/convert', methods=["GET", "POST"])
+@app.route("/convert", methods=["GET", "POST"])
 def convert():
     """Display the converter page"""
     if request.method == "POST":
@@ -27,7 +27,8 @@ def convert():
 
             char_key = request.form.get("charkey")
 
-            print(char_key)
+            image_width = int(request.form.get("image-width"))
+            image_height = int(request.form.get("image-height"))
 
             if char_key == "" or char_key == None:
                 char_key = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
@@ -36,15 +37,14 @@ def convert():
 
             # create the ascii art from the image
             ascii_art = make_image_ascii_string(
-                image_filepath, char_key, 50, 50)
-            
-            # remove the image 
+                image_filepath, char_key, image_width, image_height
+            )
+
+            # remove the image
             os.remove(image_filepath)
 
-            context = {
-                "asciiImage": ascii_art
-            }
-            
+            context = {"asciiImage": ascii_art}
+
             return render_template("view.html", **context)
         else:
             flash("No Image Selected.")
@@ -54,5 +54,5 @@ def convert():
         return render_template("convert.html")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

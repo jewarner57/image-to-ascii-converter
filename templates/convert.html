@@ -7,51 +7,71 @@
         <div class="col-4 offset-4">
             <form method='POST' class="form-group" enctype="multipart/form-data">
                 <fieldset>
-                    
-                    <label for="image-width">Image Width:</label>
-                    <input type="range" min="1" max="100" value="50" class="slider" id="image-width">
 
-                    <label for="image-height">Image Height:</label>
-                    <input type="range" min="1" max="100" value="50" class="slider" id="image-height">
+                    <!-- width range slider -->
+                    <label for="image-width">Max Width (Characters):</label>
+                    <input type="range" min="10" max="200" value="50" class="slider" id="image-width"
+                        name="image-width">
+
+                    <!-- height range slider -->
+                    <label for="image-height">Max Height (Characters):</label>
+                    <input type="range" min="10" max="200" value="50" class="slider" id="image-height"
+                        name="image-height">
 
                     <div class="setting-toggle-wrapper">
                         <label for="setting-toggle-symbols">Character Set:</label>
                         <div class="setting-toggle" id="setting-toggle-symbols">
 
-                            
-                            
-                            <select name="" id="charkeydropdown" class="setting-toggle-select">
-                                    <option value=". , * / ( # % & @">Symbols Classic</option>
-                                    <option value="@ & % # ( / * , .">Symbols Inverted</option>
+
+                            <!-- default charkey dropdown menu -->
+                            <select name="" id="charkeydropdown" class="setting-toggle-select form-control">
+                                <option value=". , * / ( # % & @">Symbols Classic</option>
+                                <option value="@ & % # ( / * , .">Symbols Inverted</option>
                             </select>
 
-                            <div id="charkeycustom" class="charkeycustom-wrapper hidden">
-                                <input type="text" class="setting-toggle-input" name="charkey">
-                            
 
-                                <button type="button" class="btn btn-secondary ml-2" data-toggle="tooltip" data-placement="top" 
-                                title="Write custom character key dark to light with one space between each character">
+                            <div id="charkeycustom" class="charkeycustom-wrapper hidden">
+                                <!-- custom charkey input -->
+                                <input type="text" class="setting-toggle-input form-control" name="charkey">
+
+                                <!-- custom charkey tooltip -->
+                                <button type="button" class="btn btn-secondary ml-2" data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Write custom character key dark to light with one space between each character">
                                     ?
                                 </button>
                             </div>
-                            
-                            
-                            
-                            <div class="setting-toggle-button setting-toggle-button-select" id="charkey-toggle" >Default</div>
+
+
+                            <!-- setting toggle button -->
+                            <div class="setting-toggle-button setting-toggle-button-select" id="charkey-toggle">Default
+                            </div>
                         </div>
                     </div>
 
-                    <label for="image">Image:</label>
+                    <!-- image file upload -->
+                    <label for="image-upload" class="imageUpload"><i class="material-icons mr-2"
+                            id="upload-icon">cloud_upload</i>Upload
+                        Image:</label>
                     <div>
-                        <input type="file" class="btn-secondary btn form-control-file m-2" id="image" name="image" accept="image/*" value="{{image}}" multiple="false">
+                        <input type="file" class="btn-secondary btn form-control-file m-2" id="image-upload"
+                            name="image" accept="image/*" value="{{image}}" multiple="false">
                     </div>
-                    <hr>
-                    <input type="submit" class="btn btn-primary submit m-2" value="Submit!">
+
+                    <div class="progress my-3 hidden" id="conversion-progress">
+                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated "
+                            role="progressbar" style="width:100%">
+                        </div>
+                    </div>
 
                     {% for message in get_flashed_messages() %}
                     <p class="errorText">{{message}}</p>
                     {% endfor %}
-                    </div>
+
+                    <hr>
+                    <!-- submit button -->
+                    <input type="submit" class="btn btn-success submit mt-2" id="submit-image" value="Submit!">
+
                 </fieldset>
             </form>
         </div>

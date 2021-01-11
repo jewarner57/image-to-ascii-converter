@@ -8,6 +8,8 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- Custom Styles-->
     <link rel="stylesheet" href="./static/styles.css" />
+    <!-- material icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
@@ -17,9 +19,11 @@
             <img src="website icon" width="30" height="30" class="d-inline-block align-top" alt="">
             Image To Ascii
         </a>
+        {% if url_for(request.endpoint) == "/"%}
         <a href="/convert">
-            <div class="btn btn-primary ml-auto">Convert</div>
+            <div class="btn btn-success ml-auto">Convert</div>
         </a>
+        {% endif %}
     </nav>
 
     <div class="content">

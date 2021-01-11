@@ -7,11 +7,13 @@
 * generate a small preview so that the user can see the ascii art without scrolling
 * add way to download ascii art as image or text file
 * fix color averager method to work, and remove temp solution
-* upload image loading bar
+
 
 
 ## Doing
 * create a second page to preview the conversion
+* 
+* upload image loading bar
 * 
 * build settings ui for convert page
   * on the convert page the sliders for height and width should change the height and width of a preview ascii image for reference
