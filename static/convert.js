@@ -34,7 +34,7 @@ function updateSizePreview() {
 
     dimensionDisplay = `<p class="text-center">Width: ${charactercount} Height: ${linecount}</p><hr>`
 
-    displayLine = "<p>" + ("* ").repeat(charactercount) + "</p>"
+    displayLine = "<p>" + ("*").repeat(charactercount) + "</p>"
     displayAll = displayLine.repeat(linecount)
 
     $(".dimension-display").html(dimensionDisplay)

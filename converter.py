@@ -1,11 +1,31 @@
 from PIL import Image
 from pixel import Pixel
 
-# print(pixels)
-
-char_key_1 = ["#", "@", "X", "W", "B", "&", "M", "G",
-              "F", "V", "C", "J", "?", "7", "I", "1",
-              "=", "/", "*", "~", "-", "_"]
+# previously written character keys
+char_key_1 = [
+    "#",
+    "@",
+    "X",
+    "W",
+    "B",
+    "&",
+    "M",
+    "G",
+    "F",
+    "V",
+    "C",
+    "J",
+    "?",
+    "7",
+    "I",
+    "1",
+    "=",
+    "/",
+    "*",
+    "~",
+    "-",
+    "_",
+]
 
 char_key_apples = ["#", "", "~", "`"]
 char_key_inverted = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
@@ -23,15 +43,14 @@ def make_image_ascii_string(image_path, character_key, width=80, height=None):
     pixel_object_list = make_pixel_object_list(pixels)
 
     # reduce the images size to the given max width and height
-    reduced_pixels = reduce_image_size(
-        pixel_object_list, width, height)
+    reduced_pixels = reduce_image_size(pixel_object_list, width, height)
 
     # get the string representation of the image
-    image_text = make_ascii_string_from_grayscale(
-        reduced_pixels, character_key)
+    image_text = make_ascii_string_from_grayscale(reduced_pixels, character_key)
 
     return image_text
 
+    # print the ascii result to the terminal
     # for row in range(0, len(image_text)):
     #     row_string = ""
     #     for col in range(0, len(image_text[0])):
@@ -43,14 +62,14 @@ def get_image_pixels(image_path):
     # open the image
     im = Image.open(image_path)
     # convert the image to use rgb format
-    im = im.convert('RGB')
+    im = im.convert("RGB")
 
     # get list of raw pixels
     raw_pixels = list(im.getdata())
     width, height = im.size
 
     # process pixel list into a matrix
-    pixels = [raw_pixels[i * width:(i + 1) * width] for i in range(height)]
+    pixels = [raw_pixels[i * width : (i + 1) * width] for i in range(height)]
 
     return pixels
 
@@ -62,16 +81,15 @@ def reduce_image_size(pixels, maxwidth, maxheight=None):
     image_width = len(pixels[0])
     image_height = len(pixels)
 
-    height_ratio = image_width/image_height
+    height_ratio = image_width / image_height
 
-    width_reduction_factor = int(image_width/maxwidth)
+    width_reduction_factor = int(image_width / maxwidth)
 
     # if no maxheight is given, make the height proportional to width
     if maxheight is None:
-        height_reduction_factor = int(
-            (image_height/(height_ratio * maxwidth)))
+        height_reduction_factor = int((image_height / (height_ratio * maxwidth)))
     else:
-        height_reduction_factor = int(image_height/maxheight)
+        height_reduction_factor = int(image_height / maxheight)
 
     if height_reduction_factor < 1:
         height_reduction_factor = 1
@@ -89,7 +107,8 @@ def reduce_image_size(pixels, maxwidth, maxheight=None):
         while column < len(pixels[0]):
 
             group_avg = get_list_avg(
-                pixels[row][column:(column + width_reduction_factor)])
+                pixels[row][column : (column + width_reduction_factor)]
+            )
 
             pixel = Pixel(group_avg)
 
@@ -115,8 +134,9 @@ def make_ascii_string_from_grayscale(pixels, ascii_key):
             pixels[row][col].getGrayscaleFromColor()
 
             # set the pixel to the corresponding char from the key
-            pixels[row][col].char = ascii_key[pixels[row][col].grayscale % len(
-                ascii_key)-1]
+            pixels[row][col].char = ascii_key[
+                pixels[row][col].grayscale % len(ascii_key) - 1
+            ]
 
             # add the pixel to the display array
             ascii_character_row.append(pixels[row][col])
@@ -166,5 +186,6 @@ def get_list_avg(pixels):
         result.append(pixels[0].color[rgb])
 
     return tuple(result)
+
 
 # make_image_ascii_string(pixels, char_key_apples, 90, 0.5)
