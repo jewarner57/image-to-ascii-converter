@@ -192,6 +192,7 @@ input[type=checkbox] {
 .export-button {
     background-color: #555555;
     color: #eeeeee;
+    min-height: 30px;
     padding: 10px;
     border-radius: 10px;
     display: flex;
