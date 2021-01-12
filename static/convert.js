@@ -42,12 +42,12 @@ function updateSizePreview() {
     let charactercount = $("#image-width").val()
     let linecount = $("#image-height").val()
 
-    let dimensionDisplay = `<p class="text-center">Width: ${charactercount} Height: ${linecount}</p><hr>`
+    let dimensionDisplay = `<p class="text-center">Width: ${charactercount} Height: ${linecount}</p>`
 
     // if the height is auto determined then make the height preview 1 tall
     if (autoSetHeight === true) {
         linecount = 1
-        dimensionDisplay = `<p class="text-center">Width: ${charactercount}</p><hr>`
+        dimensionDisplay = `<p class="text-center">Width: ${charactercount}</p>`
     }
 
     let displayLine = "<p>" + ("*").repeat(charactercount) + "</p>"
