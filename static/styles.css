@@ -22,6 +22,26 @@ body {
     background-position: center;
 }
 
+.hero-text {
+    padding: 50px 30px;
+    backdrop-filter: blur(6px);
+    border-radius: 50px;
+}
+
+.jumbotron {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.jumbotron > .row {
+    width: 100%;
+}
+
+.aboutText {
+    font-size: 24px;
+}
+
 .ascii-display {
     margin: 20px auto;
     line-height: 2px;
