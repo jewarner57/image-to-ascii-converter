@@ -8,11 +8,11 @@
 * find a way to allow for custom color picking for the text color of the output
 
 ## Doing
-* fix background blur only appearing on desktop google chrome >:O
 * create save as image tool for viewer page
 
 
 ## Done
+* fix background blur only appearing on desktop google chrome >:O
 * fix custom button on convert page dropping down
 * deploy
 * create hero image for home page

@@ -25,6 +25,7 @@ body {
 .hero-text {
     padding: 50px 30px;
     backdrop-filter: blur(6px);
+    background-color: rgba(5, 5, 5, 0.8);
     border-radius: 50px;
 }
 
