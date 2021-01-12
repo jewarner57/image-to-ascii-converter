@@ -1,4 +1,11 @@
-from flask import redirect, render_template, url_for, request, flash
+from flask import (
+    redirect,
+    render_template,
+    url_for,
+    request,
+    flash,
+    send_from_directory,
+)
 from __init__ import app
 from image_upload import uploadImage, delete_file
 from converter import make_image_ascii_string
@@ -12,6 +19,12 @@ def home():
     """Display the home page"""
 
     return render_template("home.html")
+
+
+@app.route("/favicon.ico")
+def favicon():
+    """Sends the favicon to the client"""
+    return send_from_directory(os.path.join(app.root_path, "static"), "./favicon.ico")
 
 
 @app.route("/convert", methods=["GET", "POST"])
