@@ -3,6 +3,8 @@
 ### A web app for converting images to an ascii character representation
 <hr>
 
+### Visit [www.imagetoascii.herokuapp.com](https://imgtoascii.herokuapp.com/) to check it out in action.
+
 ### How to use?
 1. clone the repository
 2. navigate to the project's root directory 
