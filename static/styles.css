@@ -44,7 +44,7 @@ body {
 }
 
 .ascii-display {
-    margin: 20px auto;
+    margin: 10px auto;
     line-height: 2px;
     font-family: 'Source Code Pro', monospace;
     white-space: nowrap;
@@ -187,4 +187,21 @@ input[type="file"] {
 /* increase checkbox size */
 input[type=checkbox] {
     transform: scale(1.5);
+}
+
+.export-button {
+    background-color: #555555;
+    color: #eeeeee;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.export-button:hover {
+    box-shadow: inset 0 0 8px #000000;
 }
