@@ -4,7 +4,7 @@
 <section>
     <div class="col-12 py-5">
         <h1 class="text-center">Conversion Settings</h1>
-        <div class="col-4 offset-4">
+        <div class="col-xlg-4 col-lg-6 col-md-8 offset-lg-3 offset-xlg-4 offset-md-2">
             <form method='POST' class="form-group" enctype="multipart/form-data">
                 <fieldset>
 
@@ -26,24 +26,25 @@
                             Determine Height</label>
                     </div>
 
-                    <div class="setting-toggle-wrapper">
+                    <div class="setting-toggle-wrapper col-12">
                         <label for="setting-toggle-symbols">Character Set:</label>
-                        <div class="setting-toggle" id="setting-toggle-symbols">
+                        <div class="setting-toggle col-12" id="setting-toggle-symbols">
 
 
                             <!-- default charkey dropdown menu -->
-                            <select name="" id="charkeydropdown" class="setting-toggle-select form-control">
+                            <select name="" id="charkeydropdown"
+                                class="setting-toggle-select form-control col-lg-7 col-12">
                                 <option value=". , * / ( # % & @">Symbols Classic</option>
                                 <option value="@ & % # ( / * , .">Symbols Inverted</option>
                             </select>
 
 
-                            <div id="charkeycustom" class="charkeycustom-wrapper hidden">
+                            <div id="charkeycustom" class="charkeycustom-wrapper hidden col-lg-7 col-12">
                                 <!-- custom charkey input -->
-                                <input type="text" class="setting-toggle-input form-control" name="charkey">
+                                <input type="text" class="setting-toggle-input form-control col-10" name="charkey">
 
                                 <!-- custom charkey tooltip -->
-                                <button type="button" class="btn btn-secondary ml-2" data-toggle="tooltip"
+                                <button type="button" class="btn btn-secondary ml-2 col-2" data-toggle="tooltip"
                                     data-placement="top"
                                     title="Write your custom character key ordered dark to light with one space between each character">
                                     ?
@@ -52,7 +53,8 @@
 
 
                             <!-- setting toggle button -->
-                            <div class="setting-toggle-button setting-toggle-button-select mx-3" id="charkey-toggle">
+                            <div class="setting-toggle-button setting-toggle-button-select col-lg-4 col-6 ml-2 my-2"
+                                id="charkey-toggle">
                                 Default
                             </div>
                         </div>
@@ -84,15 +86,15 @@
 
                 </fieldset>
             </form>
-        </div>
-    </div>
-</section>
+            <div class="size-preview mt-5">
+                <h4 class="text-center">Size Preview</h4>
+                <p class="dimension-display"></p>
+                <div class="ascii-display-container">
+                    <div class="ascii-display">
 
-<section class="size-preview">
-    <h4 class="text-center">Size Preview</h4>
-    <p class="dimension-display"></p>
-    <div class="ascii-display-container">
-        <div class="ascii-display">
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
