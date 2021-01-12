@@ -2,9 +2,15 @@ $(function () {
 
     // download ascii characters as image
     $("#image-download").click(function () {
+        $("#image-download-prompt").removeClass("hidden")
+
+
         html2canvas(document.querySelector(".ascii-display")).then(canvas => {
             download(canvas, "converted-image.png")
         });
+
+
+        //$("#image-download-prompt").addClass("hidden")
     })
 
     // copy element's inner text to clipboard
