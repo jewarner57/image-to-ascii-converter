@@ -7,6 +7,24 @@ $(function () {
         });
     })
 
+    // copy element's inner text to clipboard
+    $('#clipboard-copy').click(function () {
+        elm = document.querySelector(".ascii-display")
+
+        let selection = window.getSelection();
+        let range = document.createRange();
+        range.selectNodeContents(elm);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("Copy");
+
+        $('#clipboard-copy').html("Copied!")
+
+        window.setTimeout(function () {
+            $("#clipboard-copy").html("<i class='material-icons mr-2' id = 'upload-icon' > content_copy </i> Copy Text To Clipboard");
+        }, 3000);
+    })
+
     // change font weight
     $("#font-weight").on('input', function () {
 
