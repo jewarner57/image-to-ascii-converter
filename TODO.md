@@ -1,4 +1,5 @@
 ## Do
+* refactor image uploading to use flask-uploads
 * add averaging during height reduction to make columns look smoother
 * add way to download ascii art as image or text file
 * convert toggle button JS in convert.js into jquery from vanilla hs
