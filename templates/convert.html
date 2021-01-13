@@ -9,13 +9,13 @@
                 <fieldset>
 
                     <!-- width range slider -->
-                    <label for="image-width">Max Width (Characters):</label>
+                    <label for="image-width">Desired Width In Number of Characters (Increasing the size makes the result more detailed):</label>
                     <input type="range" min="10" max="200" value="50" class="slider" id="image-width"
                         name="image-width">
 
                     <!-- height range slider -->
                     <div id="height-slider-container">
-                        <label for="image-height">Max Height (Characters):</label>
+                        <label for="image-height">Desired Height (Characters):</label>
                         <input type="range" min="10" max="200" value="50" class="slider" id="image-height"
                             name="image-height">
                     </div>
@@ -41,7 +41,7 @@
 
                             <div id="charkeycustom" class="charkeycustom-wrapper hidden col-lg-7 col-12">
                                 <!-- custom charkey input -->
-                                <input type="text" class="setting-toggle-input form-control col-10" name="charkey">
+                                <input type="text" class="setting-toggle-input form-control col-10" name="charkey" placeholder="example: # % p o * ">
 
                                 <!-- custom charkey tooltip -->
                                 <button type="button" class="btn btn-secondary ml-2 col-2" data-toggle="tooltip"

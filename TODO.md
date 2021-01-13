@@ -9,23 +9,22 @@
 * style the 404 and 413 pages to be friendlier
 
 ## Do (User Experience Interview Feedback)
-* Add a description telling the user that the height and width are how many characters the art will have and that bigger means more detail will be in the ascii conversion.
 
 * Possibly make the tooltip for custom characters flash when you swap to it so that users know to hover over it
 
 * Make tooltips for every input
 
-* Add placeholder for the custom character creator to show what an example key would look like
-
 * The view page should have the settings in a sidebar (if screen space permits) so that the user can look at their full image while they adjust settings
 
+* fix heroku memory error on large file upload
 
 ## Doing
 
 
 
-
 ## Done
+* Add a description telling the user that the height and width are how many characters the art will have and that bigger means more detail will be in the ascii conversion.
+* Add placeholder for the custom character creator to show what an example key would look like
 * Put the font drop down above the font weight slider
 * create 404 and 413 (upload size exceeded) error pages
 * create save as image tool for viewer page
