@@ -1,6 +1,15 @@
 let autoSetHeight = true
 
 $(function () {
+
+    var uploadField = document.getElementById("image-upload");
+    uploadField.onchange = function() {
+        if(this.files[0].size > 3145728){
+            alert("Your image is too large! Max upload size is 3 megabytes.");
+            this.value = "";
+        };
+    };
+
     // change upload icon to check on upload
     $("#image-upload").on('input', function () {
         $("#upload-icon").html("check")
