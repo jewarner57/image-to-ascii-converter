@@ -39,10 +39,12 @@
                     alt="">
                 Image To Ascii
             </a>
+            {% if not request.endpoint == None %}
             {% if url_for(request.endpoint) == "/"%}
             <a href="/convert">
                 <div class="btn btn-primary ml-auto">Convert</div>
             </a>
+            {% endif %}
             {% endif %}
         </nav>
     </div>

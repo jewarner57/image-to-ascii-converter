@@ -11,6 +11,19 @@ from image_upload import uploadImage, delete_file
 from converter import make_image_ascii_string
 import os
 
+# Error Handler Routes
+
+
+@app.errorhandler(413)
+def error413(e):
+    return render_template("413.html"), 413
+
+
+@app.errorhandler(404)
+def error404(e):
+    return render_template("404.html"), 404
+
+
 # App Routes
 
 
