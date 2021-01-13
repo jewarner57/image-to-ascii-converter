@@ -21,11 +21,12 @@
 
 
 ## Doing
-* Put the font drop down above the font weight slider
+
 
 
 
 ## Done
+* Put the font drop down above the font weight slider
 * create 404 and 413 (upload size exceeded) error pages
 * create save as image tool for viewer page
 * fix background blur only appearing on desktop google chrome >:O
