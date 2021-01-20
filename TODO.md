@@ -17,10 +17,11 @@
 
 * The view page should have the settings in a sidebar (if screen space permits) so that the user can look at their full image while they adjust settings
 
-* fix heroku memory error on large file upload
+
 
 ## Doing
-
+* fix heroku memory error on large file upload
+  * Need to refactor converter.py to shrink the image before converting the pixels to pixel objects
 
 
 ## Done
