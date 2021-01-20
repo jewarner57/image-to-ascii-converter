@@ -4,8 +4,8 @@ $(function () {
 
     var uploadField = document.getElementById("image-upload");
     uploadField.onchange = function() {
-        if(this.files[0].size > 3145728){
-            alert("Your image is too large! Max upload size is 3 megabytes.");
+        if(this.files[0].size > 10485760){
+            alert("Your image must be smaller than 10 megabytes. Please use a smaller image.");
             this.value = "";
         };
     };

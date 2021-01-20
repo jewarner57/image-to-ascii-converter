@@ -35,15 +35,15 @@ char_key_classic = ["@", "&", "%", "#", "(", "/", "*", ",", "."]
 def make_image_ascii_string(image_path, character_key, width=80, height=None):
     """Given a list of pixels, returns the ascii representation of them
     Takes the pixels of the image, the character length of the ascii result
-    and the height_reduction_factor which is a float from 0.1-1.0 ."""
+    and the height in number of lines."""
 
     pixels = get_image_pixels(image_path)
 
-    # get a list of single digit grayscale colors for each pixel
-    pixel_object_list = make_pixel_object_list(pixels)
-
     # reduce the images size to the given max width and height
-    reduced_pixels = reduce_image_size(pixel_object_list, width, height)
+    reduced_pixels = reduce_image_size(pixels, width, height)
+
+    # get a list of single digit grayscale colors for each pixel
+    # pixel_object_list = make_pixel_object_list(reduced_pixels)
 
     # get the string representation of the image
     image_text = make_ascii_string_from_grayscale(reduced_pixels, character_key)
@@ -106,11 +106,7 @@ def reduce_image_size(pixels, maxwidth, maxheight=None):
 
         while column < len(pixels[0]):
 
-            group_avg = get_list_avg(
-                pixels[row][column : (column + width_reduction_factor)]
-            )
-
-            pixel = Pixel(group_avg)
+            pixel = Pixel(pixels[row][column])
 
             row_list.append(pixel)
 
@@ -170,22 +166,23 @@ def make_pixel_object_list(pixels):
     return pixel_color_list
 
 
-def get_list_avg(pixels):
-    """Returns the average of a list of pixel's color"""
+# Removed Pixel Averaging to Improve Performance
+# def get_list_avg(pixels):
+#     """Returns the average of a list of pixel's color"""
 
-    avg = 0
-    count = 0
-    result = []
+#     avg = 0
+#     count = 0
+#     result = []
 
-    for rgb in range(0, 3):
-        for pixel in pixels:
-            count += 1
-            avg += pixel.color[rgb]
+#     for rgb in range(0, 3):
+#         for pixel in pixels:
+#             count += 1
+#             avg += pixel.color[rgb]
 
-        avg = avg // count
-        result.append(pixels[0].color[rgb])
+#         avg = avg // count
+#         result.append(pixels[0].color[rgb])
 
-    return tuple(result)
+#     return tuple(result)
 
 
 # make_image_ascii_string(pixels, char_key_apples, 90, 0.5)
