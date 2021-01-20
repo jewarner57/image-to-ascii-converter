@@ -18,13 +18,12 @@
 * The view page should have the settings in a sidebar (if screen space permits) so that the user can look at their full image while they adjust settings
 
 
-
 ## Doing
-* test converter with 10 megabyte file upload max
-  * lower the max back down once stress testing is done
-
+* convert label tips (parts in parentheses) to tooltips
+* upload checkmark should not appear if image was too large
 
 ## Done
+* max upload size labels are now set by flask server config
 * fix heroku memory error on large file upload
   * refactor converter.py to shrink the image before converting the pixels to pixel objects
 * Add a description telling the user that the height and width are how many characters the art will have and that bigger means more detail will be in the ascii conversion.

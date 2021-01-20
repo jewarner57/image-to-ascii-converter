@@ -7,8 +7,11 @@ $(function () {
         maxSize = $("#maxUpload").html()
 
         if(this.files[0].size > (parseInt(maxSize)* 1024 * 1024)){
-            alert(`Your image must be smaller than ${maxSize} megabytes. Please use a smaller image.`);
             this.value = "";
+            alert(`Your image must be smaller than ${maxSize} megabytes. Please use a smaller image.`);
+            
+            // set upload icon back to cloud icon
+            $("#upload-icon").html("cloud_upload")
         };
     };
 
