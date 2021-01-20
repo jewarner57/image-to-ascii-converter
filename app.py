@@ -5,6 +5,7 @@ from flask import (
     request,
     flash,
     send_from_directory,
+    current_app
 )
 from __init__ import app
 from image_upload import uploadImage, delete_file
@@ -82,7 +83,10 @@ def convert():
             return redirect(url_for("convert"))
 
     else:
-        return render_template("convert.html")
+
+        context = {"uploadSize": int(current_app.config["MAX_CONTENT_LENGTH"]/1024/1024)}
+
+        return render_template("convert.html", **context)
 
 
 if __name__ == "__main__":

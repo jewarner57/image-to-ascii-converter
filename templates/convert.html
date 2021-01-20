@@ -9,13 +9,13 @@
                 <fieldset>
 
                     <!-- width range slider -->
-                    <label for="image-width">Desired Width In Number of Characters (Increasing the size makes the result more detailed):</label>
+                    <label for="image-width">Desired Width In Number of Characters: (Increasing the size increases detail)</label>
                     <input type="range" min="10" max="200" value="50" class="slider" id="image-width"
                         name="image-width">
 
                     <!-- height range slider -->
                     <div id="height-slider-container">
-                        <label for="image-height">Desired Height (Characters):</label>
+                        <label for="image-height">Desired Height In Number of Lines: (setting height to one half of the width works well for landscape images)</label>
                         <input type="range" min="10" max="200" value="50" class="slider" id="image-height"
                             name="image-height">
                     </div>
@@ -68,6 +68,7 @@
                         <input type="file" class="btn-secondary btn form-control-file m-2" id="image-upload"
                             name="image" accept="image/*" value="{{image}}" multiple="false">
                     </div>
+                    <p>Max upload size is: <span id="maxUpload">{{uploadSize}}</span> Megabytes</p>
 
                     <div class="progress my-3 hidden" id="conversion-progress">
                         <div class="progress-bar progress-bar-striped bg-success progress-bar-animated "
