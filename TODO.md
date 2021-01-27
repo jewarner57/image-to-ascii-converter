@@ -8,15 +8,16 @@
   * for example if the user hits the back button the check should be there
 * find a way to allow for custom color picking for the text color of the output
 * style the 404 and 413 pages to be friendlier
+* Organize CSS styles and add index
 
 ## Do (User Experience Interview Feedback)
-* Replace Toggle Buttons with Tabs or Dropdowns
-
 * The view page should have the settings in a sidebar (if screen space permits) so that the user can look at their full image while they adjust settings
 
 
 ## Doing
-
+* Replace Toggle Buttons with Tabs or Dropdowns
+  * Font Color - Done
+  * Character Set
 
 
 ## Done

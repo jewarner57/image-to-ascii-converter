@@ -39,38 +39,15 @@ $(function () {
         $(".ascii-display").css({ "font-weight": fontWeight })
     })
 
-    let textColorToggle = 0
     // change the text color
-    $("#font-color-toggle").click(function () {
-        toggle = $("#font-color-toggle")
+    $("#setting-toggle-color").on('input', function () {
+        select = $("#setting-toggle-color")
 
-        if (textColorToggle === 0) {
-
-            toggle.addClass("setting-toggle-button-deselect")
-            toggle.removeClass("setting-toggle-button-select")
-
-            toggle.html("Black")
-
-            // $("#text-color").removeClass("hidden")
-
+        if (select.val() === "Black") {
             $(".ascii-display").addClass("ascii-display-black")
-
-            textColorToggle = 1
-
         }
-        else {
-
-            toggle.removeClass("setting-toggle-button-deselect")
-            toggle.addClass("setting-toggle-button-select")
-
-            toggle.html("Color")
-
-            //$("#text-color").addClass("hidden")
-
+        else if(select.val() === "Color"){
             $(".ascii-display").removeClass("ascii-display-black")
-
-            textColorToggle = 0
-
         }
     })
 
