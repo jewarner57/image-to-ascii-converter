@@ -1,26 +1,36 @@
 ## Do
 * refactor image uploading to use flask-uploads
+
 * add averaging during height reduction to make columns look smoother
-* add way to download ascii art as image or text file
-* convert toggle button JS in convert.js into jquery from vanilla hs
+
 * fix color averager method to work, and remove temp solution
+
 * image upload check should appear if the form starts with an image in it
   * for example if the user hits the back button the check should be there
+
 * find a way to allow for custom color picking for the text color of the output
+
 * style the 404 and 413 pages to be friendlier
-* Organize CSS styles and add index
+
+
+
 
 ## Do (User Experience Interview Feedback)
 * The view page should have the settings in a sidebar (if screen space permits) so that the user can look at their full image while they adjust settings
 
 
 ## Doing
-* Replace Toggle Buttons with Tabs or Dropdowns
-  * Font Color - Done
-  * Character Set
+* Fix auto determine height to work better with landscape photos
+* Organize CSS styles and add index to css file
+
+
 
 
 ## Done
+* submit button should fit theme better
+* Replace Toggle Buttons with Tabs or Dropdowns
+  * Font Color - Done
+  * Character Set - Done
 * Possibly make the tooltip for custom characters flash when you swap to it so that users know to hover over it
 * convert label tips (parts in parentheses) to tooltips
 * Make tooltips for every input

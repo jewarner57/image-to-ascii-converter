@@ -6,12 +6,12 @@
         <h1 class="text-center">Conversion Settings</h1>
         <div class="col-xlg-4 col-lg-6 col-md-8 offset-lg-3 offset-xlg-4 offset-md-2">
             <form method='POST' class="form-group" enctype="multipart/form-data">
-                <fieldset>
+                <fieldset class="setting-container">
 
                     <!-- width range slider -->
-                    <label for="image-width">Desired Width In Number of Characters:</label>
+                    <label for="image-width">Width In Number of Characters:</label>
                     <div class="input-tooltip-wrapper pb-2">
-                        <input type="range" min="10" max="200" value="50" class="slider" id="image-width"
+                        <input type="range" min="10" max="200" value="100" class="slider" id="image-width"
                             name="image-width">
                         <!-- custom width tooltip -->
                         <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip"
@@ -23,7 +23,7 @@
 
                     <!-- height range slider -->
                     <div id="height-slider-container">
-                        <label for="image-height">Desired Height In Number of Lines:</label>
+                        <label for="image-height">Height In Number of Lines:</label>
                         <div class="input-tooltip-wrapper">
                         <input type="range" min="10" max="200" value="50" class="slider" id="image-height"
                             name="image-height">
@@ -42,36 +42,43 @@
                             Determine Height</label>
                     </div>
 
-                    <div class="setting-toggle-wrapper col-12">
-                        <label for="setting-toggle-symbols">Character Set:</label>
-                        <div class="setting-toggle col-12" id="setting-toggle-symbols">
+                    <div class="setting-wrapper my-5">
+                        <!-- Tabs For Character Key Customization -->
+                        <label for="charkey-tabs">Character Set:</label>
 
+                        <ul class="nav nav-tabs" id="charkey-tabs" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="default-tab" data-toggle="tab" href="#default" role="tab" aria-controls="Default" aria-selected="true">Default</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="custom-tab" data-toggle="tab" href="#custom" role="tab" aria-controls="Custom" aria-selected="false">Custom</a>
+                            </li>
+                        </ul>
 
-                            <!-- default charkey dropdown menu -->
-                            <select name="" id="charkeydropdown"
-                                class="setting-toggle-select form-control col-lg-7 col-12">
-                                <option value=". , * / ( # % & @">Symbols Classic</option>
-                                <option value="@ & % # ( / * , .">Symbols Inverted</option>
-                            </select>
-
-
-                            <div id="charkeycustom" class="charkeycustom-wrapper hidden col-lg-7 col-12">
-                                <!-- custom charkey input -->
-                                <input type="text" class="setting-toggle-input form-control col-10" name="charkey" placeholder="example: # % p o * ">
-
-                                <!-- custom charkey tooltip -->
-                                <button type="button" class="btn btn-secondary ml-2 col-2" data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Write your custom character key ordered dark to light with one space between each character">
-                                    ?
-                                </button>
+                        <div class="tab-content py-4" id="myTabContent">
+                            <!-- Default -->
+                            <div class="tab-pane fade show active col-12" id="default" role="tabpanel" aria-labelledby="default-tab">
+                                <!-- default charkey dropdown menu -->
+                                <div class="col-12 col-lg-7">
+                                    <select name="charkey" id="charkeydropdown" class="setting-toggle-select form-control col-12">
+                                        <option value=". , * / ( # % & @">Symbols Classic</option>
+                                        <option value="@ & % # ( / * , .">Symbols Inverted</option>
+                                    </select>
+                                </div>
                             </div>
+                            <!-- Custom -->
+                            <div class="tab-pane fade py-2 pl-4" id="custom" role="tabpanel" aria-labelledby="custom-tab">
+                                <div id="charkeycustom" class="charkeycustom-wrapper col-lg-7 col-12">
+                                    <!-- custom charkey input -->
+                                    <input type="text" id="custom-charkey-input" class="setting-toggle-input form-control col-10" name="" placeholder="example: # % p o * ">
 
-
-                            <!-- setting toggle button -->
-                            <div class="setting-toggle-button setting-toggle-button-select col-lg-4 col-6 ml-2 my-2"
-                                id="charkey-toggle">
-                                Default
+                                    <!-- custom charkey tooltip -->
+                                    <button type="button" class="btn btn-secondary ml-2 col-2" data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Write your custom character key ordered dark to light with one space between each character">
+                                        ?
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,7 +105,7 @@
 
                     <hr>
                     <!-- submit button -->
-                    <input type="submit" class="btn btn-success submit mt-2" id="submit-image"
+                    <input type="submit" class="btn theme-button submit mt-2" id="submit-image"
                         value="Submit and Convert">
 
                 </fieldset>

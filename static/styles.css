@@ -111,27 +111,14 @@ body {
     border-radius: 15px;
 }
 
-
-.setting-toggle {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.setting-toggle-wrapper {
-    margin: 20px 0;
-}
-
-.setting-toggle-button {
-    width: 30%;
-    padding: 10px;
+.theme-button {
     background-color: #4c7aaf;
+    padding: 10px 20px;
     text-align: center;
     color: whitesmoke;
     border-radius: 10px;
     cursor: pointer;
+    border-bottom: 4px solid #314f72;
 
     /* prevent text highlight */
     -webkit-touch-callout: none;
@@ -140,14 +127,20 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
+    /* format button content */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.setting-toggle-button-select {
+.theme-button:hover {
+    color: whitesmoke;
     box-shadow: inset 0 0 8px #000000;
-}
-
-.setting-toggle-button-deselect {
-    border-bottom: 4px solid #314f72;
+    border: none;
+    padding: 12px 20px;
 }
 
 .charkeycustom-wrapper {
@@ -159,7 +152,13 @@ body {
 .setting-toggle-select {
     padding: 5px;
     margin-left: 10px;
-    width: 60%;
+    width: 100%;
+}
+
+.setting-container {
+    background-color: #8383830c;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .hidden {
@@ -194,24 +193,6 @@ input[type="file"] {
 /* increase checkbox size */
 input[type=checkbox] {
     transform: scale(1.5);
-}
-
-.export-button {
-    background-color: #555555;
-    color: #eeeeee;
-    min-height: 30px;
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.export-button:hover {
-    box-shadow: inset 0 0 8px #000000;
 }
 
 .error-page-wrapper {
