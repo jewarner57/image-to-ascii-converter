@@ -3,7 +3,7 @@
 ### A web app for converting images to an ascii character representation
 <hr>
 
-### Visit [imgtoascii.herokuapp.com](https://imgtoascii.herokuapp.com/) to check it out in action.
+### Visit [imgtoascii.herokuapp.com](https://imgtoascii.herokuapp.com/) to test it out.
 
 ### How to use?
 1. clone the repository
@@ -12,8 +12,8 @@
 4. run: ```python ./app.py```
 
 ### Why? 
-  * Ascii converters are common on the internet, but many of them allow for minimal customization and use confusing or text heavy user interfaces to do so.
-  * This app aims to provide an easy and highly customizeable ascii image conversion experience.
+  * Ascii converters are common on the internet, but many of them allow for minimal customization and use confusing or text heavy user interfaces.
+  * This app provides an easy and highly customizeable ascii image conversion experience.
 
 ### Example output from the app.
 ![Flag Image in ASCII](./static/images/flagoutput.png)

@@ -9,15 +9,31 @@
                 <fieldset>
 
                     <!-- width range slider -->
-                    <label for="image-width">Desired Width In Number of Characters: (Increasing the size increases detail)</label>
-                    <input type="range" min="10" max="200" value="50" class="slider" id="image-width"
-                        name="image-width">
+                    <label for="image-width">Desired Width In Number of Characters:</label>
+                    <div class="input-tooltip-wrapper pb-2">
+                        <input type="range" min="10" max="200" value="50" class="slider" id="image-width"
+                            name="image-width">
+                        <!-- custom width tooltip -->
+                        <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip"
+                        data-placement="top"
+                        title="Increasing size increases detail.">
+                        ?
+                        </button>
+                    </div>
 
                     <!-- height range slider -->
                     <div id="height-slider-container">
-                        <label for="image-height">Desired Height In Number of Lines: (setting height to one half of the width works well for landscape images)</label>
+                        <label for="image-height">Desired Height In Number of Lines:</label>
+                        <div class="input-tooltip-wrapper">
                         <input type="range" min="10" max="200" value="50" class="slider" id="image-height"
                             name="image-height">
+                        <!-- custom height tooltip -->
+                        <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip"
+                        data-placement="top"
+                        title="setting height to one half of the width works well for landscape images.">
+                        ?
+                        </button>
+                        </div>
                     </div>
                     <!-- auto set height checkbox -->
                     <div class="form-check mt-2 ml-2">

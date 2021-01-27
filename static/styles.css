@@ -70,6 +70,13 @@ body {
     overflow-x: auto;
 }
 
+.input-tooltip-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .slider {
     -webkit-appearance: none;
     width: 100%;

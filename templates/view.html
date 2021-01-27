@@ -20,8 +20,15 @@
 
             <!-- font weight range slider -->
             <label for="font-weight">Font Weight:</label>
-            <input type="range" min="100" max="900" value="800" step="100" class="slider mb-3" id="font-weight">
-
+            <div class="input-tooltip-wrapper">
+                <input type="range" min="100" max="900" value="800" step="100" class="slider col-10" id="font-weight">
+                <!-- custom font weight tooltip -->
+                <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip"
+                data-placement="top"
+                title="Increasing font weight increases brightness.">
+                ?
+                </button>
+            </div>
             <p class="text-center mt-4">Color Settings</p>
 
             <div class="color-settings">
@@ -43,8 +50,16 @@
 
 
                 <div class="color-picker">
-                    <label for="background-color">Background Color: (Black works well for color images)</label>
-                    <input type="color" id="background-color" value="#ffffff" class="ml-2 color-input col-12">
+                    <label for="background-color">Background Color:</label>
+                    <div class="input-tooltip-wrapper">
+                        <input type="color" id="background-color" value="#ffffff" class="ml-2 color-input col-10">
+                        <!-- custom background color tooltip -->
+                        <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip"
+                        data-placement="top"
+                        title="Black is a good choice for full color images.">
+                        ?
+                        </button>
+                    </div>
                 </div>
             </div>
 

@@ -10,19 +10,20 @@
 * style the 404 and 413 pages to be friendlier
 
 ## Do (User Experience Interview Feedback)
-
-* Possibly make the tooltip for custom characters flash when you swap to it so that users know to hover over it
-
-* Make tooltips for every input
+* Replace Toggle Buttons with Tabs or Dropdowns
 
 * The view page should have the settings in a sidebar (if screen space permits) so that the user can look at their full image while they adjust settings
 
 
 ## Doing
-* convert label tips (parts in parentheses) to tooltips
-* upload checkmark should not appear if image was too large
+
+
 
 ## Done
+* Possibly make the tooltip for custom characters flash when you swap to it so that users know to hover over it
+* convert label tips (parts in parentheses) to tooltips
+* Make tooltips for every input
+* upload checkmark should not appear if image was too large
 * max upload size labels are now set by flask server config
 * fix heroku memory error on large file upload
   * refactor converter.py to shrink the image before converting the pixels to pixel objects
