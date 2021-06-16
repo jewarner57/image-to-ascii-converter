@@ -5,7 +5,7 @@ from flask import (
     request,
     flash,
     send_from_directory,
-    current_app
+    current_app,
 )
 from __init__ import app
 from image_upload import uploadImage, delete_file
@@ -75,6 +75,7 @@ def convert():
             # remove the image
             os.remove(image_filepath)
 
+            # the ascii image string
             context = {"asciiImage": ascii_art}
 
             return render_template("view.html", **context)
@@ -84,7 +85,9 @@ def convert():
 
     else:
 
-        context = {"uploadSize": int(current_app.config["MAX_CONTENT_LENGTH"]/1024/1024)}
+        context = {
+            "uploadSize": int(current_app.config["MAX_CONTENT_LENGTH"] / 1024 / 1024)
+        }
 
         return render_template("convert.html", **context)
 

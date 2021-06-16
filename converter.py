@@ -42,20 +42,10 @@ def make_image_ascii_string(image_path, character_key, width=80, height=None):
     # reduce the images size to the given max width and height
     reduced_pixels = reduce_image_size(pixels, width, height)
 
-    # get a list of single digit grayscale colors for each pixel
-    # pixel_object_list = make_pixel_object_list(reduced_pixels)
-
     # get the string representation of the image
-    image_text = make_ascii_string_from_grayscale(reduced_pixels, character_key)
+    image_text = make_ascii_string_from_pixels(reduced_pixels, character_key)
 
     return image_text
-
-    # print the ascii result to the terminal
-    # for row in range(0, len(image_text)):
-    #     row_string = ""
-    #     for col in range(0, len(image_text[0])):
-    #         row_string += image_text[row][col]
-    #     print(row_string)
 
 
 def get_image_pixels(image_path):
@@ -118,8 +108,8 @@ def reduce_image_size(pixels, maxwidth, maxheight=None):
     return reduced_list
 
 
-def make_ascii_string_from_grayscale(pixels, ascii_key):
-    """converts an array of grayscale rgb numbers (0-255) into ascii chars."""
+def make_ascii_string_from_pixels(pixels, ascii_key):
+    """converts an array of rgb pixels into an ascii representation"""
     ascii_character_list = []
 
     for row in range(0, len(pixels)):
@@ -140,49 +130,3 @@ def make_ascii_string_from_grayscale(pixels, ascii_key):
         ascii_character_list.append(ascii_character_row)
 
     return ascii_character_list
-
-
-def make_pixel_object_list(pixels):
-    """Takes a list of rgb colors and converts them into a grayscale
-    representation."""
-
-    pixel_color_list = []
-
-    for row in range(0, len(pixels)):
-        pixel_row = []
-        for col in range(0, len(pixels[0])):
-
-            # get the color data for each pixel
-            pixel_color = pixels[row][col]
-
-            # average the R, G, and B values together to get grayscale value
-            pixel = Pixel(pixel_color)
-
-            # add the grayscale value to the row list
-            pixel_row.append(pixel)
-
-        pixel_color_list.append(pixel_row)
-
-    return pixel_color_list
-
-
-# Removed Pixel Averaging to Improve Performance
-# def get_list_avg(pixels):
-#     """Returns the average of a list of pixel's color"""
-
-#     avg = 0
-#     count = 0
-#     result = []
-
-#     for rgb in range(0, 3):
-#         for pixel in pixels:
-#             count += 1
-#             avg += pixel.color[rgb]
-
-#         avg = avg // count
-#         result.append(pixels[0].color[rgb])
-
-#     return tuple(result)
-
-
-# make_image_ascii_string(pixels, char_key_apples, 90, 0.5)
