@@ -9,8 +9,13 @@ def make_image_ascii_string(image_path, character_key, width=80, height=None):
 
     pixels = get_image_pixels(image_path)
 
-    # reduce the images size to the given max width and height
-    reduced_pixels = reduce_image_size(pixels, width, height)
+    # get the size reduction factors for the image
+    reduction_factors = get_image_reduction_factors(pixels, width, height)
+
+    # reduce the images size using the reduction factors
+    reduced_pixels = reduce_image_size(
+        pixels, reduction_factors[0], reduction_factors[1]
+    )
 
     # get the string representation of the image
     image_text = make_ascii_string_from_pixels(reduced_pixels, character_key)
@@ -34,9 +39,10 @@ def get_image_pixels(image_path):
     return pixels
 
 
-def reduce_image_size(pixels, maxwidth, maxheight=None):
-    """reduces the size of an array of pixels so that it matches the given
-    maximum width and height factor."""
+def get_image_reduction_factors(pixels, maxwidth, maxheight=None):
+    """Calculates the factors for reducing the size of an image so
+    that it stays proportional and fits within the maxwidth and maxheight
+    returns a tuple (width_factor, height_factor)"""
 
     image_width = len(pixels[0])
     image_height = len(pixels)
@@ -56,8 +62,14 @@ def reduce_image_size(pixels, maxwidth, maxheight=None):
     if width_reduction_factor < 1:
         width_reduction_factor = 1
 
-    reduced_list = []
+    return (width_reduction_factor, height_reduction_factor)
 
+
+def reduce_image_size(pixels, width_reduction_factor, height_reduction_factor):
+    """reduces the size of an array of pixels by the given factors for
+    width and height"""
+
+    reduced_list = []
     row = 0
 
     while row < len(pixels) - height_reduction_factor:
