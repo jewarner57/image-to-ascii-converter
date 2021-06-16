@@ -41,7 +41,7 @@ def reduce_image_size(pixels, maxwidth, maxheight=None):
     image_width = len(pixels[0])
     image_height = len(pixels)
 
-    height_ratio = (image_height * 2.9) / (image_width * 4)
+    height_ratio = (image_height * 2.8) / (image_width * 4)
 
     width_reduction_factor = int(image_width / maxwidth)
 
