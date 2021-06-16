@@ -7,6 +7,7 @@ def make_image_ascii_string(image_path, character_key, width=80, height=None):
     Takes the pixels of the image, the character length of the ascii result
     and the height in number of lines."""
 
+    # get a matrix of pixels from an image
     pixels = get_image_pixels(image_path)
 
     # get the size reduction factors for the image
@@ -66,7 +67,7 @@ def get_image_reduction_factors(pixels, maxwidth, maxheight=None):
 
 
 def reduce_image_size(pixels, width_reduction_factor, height_reduction_factor):
-    """reduces the size of an array of pixels by the given factors for
+    """reduces the size of an array of pixels by the given reduction factors for
     width and height"""
 
     reduced_list = []
@@ -91,7 +92,8 @@ def reduce_image_size(pixels, width_reduction_factor, height_reduction_factor):
 
 
 def make_ascii_string_from_pixels(pixels, ascii_key):
-    """converts an array of rgb pixels into an ascii representation"""
+    """converts an array of rgb pixels into an array of ascii
+    symbols based on the brightness of each pixel"""
     ascii_character_list = []
 
     for row in range(0, len(pixels)):
