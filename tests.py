@@ -68,3 +68,29 @@ class AuthTests(TestCase):
             differenceFromHeightMax,
             reduction_factors[1],
         )
+
+    def test_reduce_image_size(self):
+        testImage = "./test_images/converter-test-4.jpg"
+        image_dimensions = get_image_dimensions(testImage)
+
+        maxwidth = 200
+        maxheight = 100
+
+        pixels = get_image_pixels(testImage)
+        reduction_factors = get_image_reduction_factors(pixels, maxwidth, maxheight)
+
+        reduced_pixels = reduce_image_size(
+            pixels, reduction_factors[0], reduction_factors[1]
+        )
+
+        expectedWidth = image_dimensions.get("width") / reduction_factors[0]
+        realWidth = len(reduced_pixels[0])
+        widthdiff = abs(expectedWidth - realWidth)
+
+        expectedHeight = image_dimensions.get("height") / reduction_factors[1]
+        realHeight = len(reduced_pixels)
+        heightdiff = abs(expectedHeight - realHeight)
+
+        # difference between real and expected size should be less than 1
+        self.assertLess(widthdiff, 1)
+        self.assertLess(heightdiff, 1)
