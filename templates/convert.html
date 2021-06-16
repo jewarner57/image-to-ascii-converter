@@ -2,129 +2,126 @@
 {% block content %}
 
 <section>
-    <div class="col-12 py-5">
-        <h1 class="text-center">Conversion Settings</h1>
-        <div class="col-xlg-4 col-lg-6 col-md-8 offset-lg-3 offset-xlg-4 offset-md-2">
-            <form method='POST' class="form-group" enctype="multipart/form-data">
-                <fieldset class="setting-container">
+  <div class="col-12 py-5">
+    <h1 class="text-center">Conversion Settings</h1>
+    <div class="col-xlg-4 col-lg-6 col-md-8 offset-lg-3 offset-xlg-4 offset-md-2">
+      <form method='POST' class="form-group" enctype="multipart/form-data">
+        <fieldset class="setting-container">
 
-                    <!-- width range slider -->
-                    <label for="image-width">Width In Number of Characters:</label>
-                    <div class="input-tooltip-wrapper pb-2">
-                        <input type="range" min="10" max="200" value="100" class="slider" id="image-width"
-                            name="image-width">
-                        <!-- custom width tooltip -->
-                        <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip"
-                        data-placement="top"
-                        title="Increasing size increases detail.">
-                        ?
-                        </button>
-                    </div>
+          <!-- width range slider -->
+          <label for="image-width">Width In Number of Characters:</label>
+          <div class="input-tooltip-wrapper pb-2">
+            <input type="range" min="10" max="200" value="100" class="slider" id="image-width" name="image-width">
+            <!-- custom width tooltip -->
+            <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip" data-placement="top"
+              title="Increasing size increases detail.">
+              ?
+            </button>
+          </div>
 
-                    <!-- height range slider -->
-                    <div id="height-slider-container">
-                        <label for="image-height">Height In Number of Lines:</label>
-                        <div class="input-tooltip-wrapper">
-                        <input type="range" min="10" max="200" value="50" class="slider" id="image-height"
-                            name="image-height">
-                        <!-- custom height tooltip -->
-                        <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip"
-                        data-placement="top"
-                        title="setting height to one half of the width works well for landscape images.">
-                        ?
-                        </button>
-                        </div>
-                    </div>
-                    <!-- auto set height checkbox -->
-                    <div class="form-check mt-2 ml-2">
-                        <input type="checkbox" class="form-check-input" id="proportionalheight">
-                        <label class="form-check-label ml-2" for="proportionalheight" name="auto-set-height">Auto
-                            Determine Height</label>
-                    </div>
-
-                    <div class="setting-wrapper my-5">
-                        <!-- Tabs For Character Key Customization -->
-                        <label for="charkey-tabs">Character Set:</label>
-
-                        <ul class="nav nav-tabs" id="charkey-tabs" role="tablist">
-                            <li class="nav-item">
-                              <a class="nav-link active" id="default-tab" data-toggle="tab" href="#default" role="tab" aria-controls="Default" aria-selected="true">Default</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" id="custom-tab" data-toggle="tab" href="#custom" role="tab" aria-controls="Custom" aria-selected="false">Custom</a>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content py-4" id="myTabContent">
-                            <!-- Default -->
-                            <div class="tab-pane fade show active col-12" id="default" role="tabpanel" aria-labelledby="default-tab">
-                                <!-- default charkey dropdown menu -->
-                                <div class="col-12 col-lg-7">
-                                    <select name="charkey" id="charkeydropdown" class="setting-toggle-select form-control col-12">
-                                        <option value=". , * / ( # % & @">Symbols Classic</option>
-                                        <option value="@ & % # ( / * , .">Symbols Inverted</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Custom -->
-                            <div class="tab-pane fade py-2 pl-4" id="custom" role="tabpanel" aria-labelledby="custom-tab">
-                                <div id="charkeycustom" class="charkeycustom-wrapper col-lg-7 col-12">
-                                    <!-- custom charkey input -->
-                                    <input type="text" id="custom-charkey-input" class="setting-toggle-input form-control col-10" name="" placeholder="example: # % p o * ">
-
-                                    <!-- custom charkey tooltip -->
-                                    <button type="button" class="btn btn-secondary ml-2 col-2" data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="Write your custom character key ordered dark to light with one space between each character">
-                                        ?
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- image file upload -->
-                    <label for="image-upload" class="imageUpload"><i class="material-icons mr-2"
-                            id="upload-icon">cloud_upload</i>Upload
-                        Image:</label>
-                    <div>
-                        <input type="file" class="btn-secondary btn form-control-file m-2" id="image-upload"
-                            name="image" accept="image/*" value="{{image}}" multiple="false">
-                    </div>
-                    <p>Max upload size is: <span id="maxUpload">{{uploadSize}}</span> Megabytes</p>
-
-                    <div class="progress my-3 hidden" id="conversion-progress">
-                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated "
-                            role="progressbar" style="width:100%">
-                        </div>
-                    </div>
-
-                    {% for message in get_flashed_messages() %}
-                    <p class="errorText">{{message}}</p>
-                    {% endfor %}
-
-                    <hr>
-                    <!-- submit button -->
-                    <input type="submit" class="btn theme-button submit mt-2" id="submit-image"
-                        value="Submit and Convert">
-
-                </fieldset>
-            </form>
-            <div class="size-preview mt-5">
-                <h4 class="text-center">Size Preview</h4>
-                <p class="dimension-display"></p>
-                <div class="ascii-display-container">
-                    <div class="ascii-display">
-
-                    </div>
-                </div>
+          <!-- height range slider -->
+          <div id="height-slider-container">
+            <label for="image-height">Height In Number of Lines:</label>
+            <div class="input-tooltip-wrapper">
+              <input type="range" min="10" max="200" value="50" class="slider" id="image-height" name="image-height">
+              <!-- custom height tooltip -->
+              <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip" data-placement="top"
+                title="setting height to one half of the width works well for landscape images.">
+                ?
+              </button>
             </div>
+          </div>
+          <!-- auto set height checkbox -->
+          <div class="form-check mt-2 ml-2">
+            <input type="checkbox" class="form-check-input" id="proportionalheight">
+            <label class="form-check-label ml-2" for="proportionalheight" name="auto-set-height">Auto
+              Determine Height</label>
+          </div>
 
+          <div class="setting-wrapper my-5">
+            <!-- Tabs For Character Key Customization -->
+            <label for="charkey-tabs">Character Set:</label>
+
+            <ul class="nav nav-tabs" id="charkey-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="default-tab" data-toggle="tab" href="#default" role="tab"
+                  aria-controls="Default" aria-selected="true">Default</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-tab" data-toggle="tab" href="#custom" role="tab" aria-controls="Custom"
+                  aria-selected="false">Custom</a>
+              </li>
+            </ul>
+
+            <div class="tab-content py-4" id="myTabContent">
+              <!-- Default -->
+              <div class="tab-pane fade show active col-12" id="default" role="tabpanel" aria-labelledby="default-tab">
+                <!-- default charkey dropdown menu -->
+                <div class="col-12 col-lg-7">
+                  <select name="charkey" id="charkeydropdown" class="setting-toggle-select form-control col-12">
+                    <option value=". , * / ( # % & @">Symbols Classic</option>
+                    <option value="@ & % # ( / * , .">Symbols Inverted</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Custom -->
+              <div class="tab-pane fade py-2 pl-4" id="custom" role="tabpanel" aria-labelledby="custom-tab">
+                <div id="charkeycustom" class="charkeycustom-wrapper col-lg-7 col-12">
+                  <!-- custom charkey input -->
+                  <input type="text" id="custom-charkey-input" class="setting-toggle-input form-control col-10" name=""
+                    placeholder="example: # % p o * ">
+
+                  <!-- custom charkey tooltip -->
+                  <button type="button" class="btn btn-secondary ml-2 col-2" data-toggle="tooltip" data-placement="top"
+                    title="Write your custom character key ordered dark to light with one space between each character">
+                    ?
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- image file upload -->
+          <label for="image-upload" class="imageUpload"><i class="material-icons mr-2"
+              id="upload-icon">cloud_upload</i>Upload
+            Image:</label>
+          <div>
+            <input type="file" class="btn-secondary btn form-control-file m-2" id="image-upload" name="image"
+              accept="image/*" value="{{image}}" multiple="false">
+          </div>
+          <p>Max upload size is: <span id="maxUpload">{{uploadSize}}</span> Megabytes</p>
+
+          <div class="progress my-3 hidden" id="conversion-progress">
+            <div class="progress-bar progress-bar-striped bg-success progress-bar-animated " role="progressbar"
+              style="width:100%">
+            </div>
+          </div>
+
+          {% for message in get_flashed_messages() %}
+          <p class="errorText">{{message}}</p>
+          {% endfor %}
+
+          <hr>
+          <!-- submit button -->
+          <input type="submit" class="btn theme-button submit mt-2" id="submit-image" value="Submit and Convert">
+
+        </fieldset>
+      </form>
+      <div class="size-preview mt-5">
+        <h4 class="text-center">Size Preview</h4>
+        <p class="dimension-display"></p>
+        <div class="ascii-display-container">
+          <div class="ascii-display">
+
+          </div>
         </div>
+      </div>
+
     </div>
+  </div>
 </section>
 {% endblock content %}
 
 {% block scripts %}
-<script type="text/javascript" src="../static/convert.js"></script>
+<script type="text/javascript" src="../static/convert-settings.js"></script>
 {% endblock scripts %}

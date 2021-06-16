@@ -2,88 +2,86 @@
 {% block content %}
 
 <section>
-    <div class="col-12 py-5">
-        <h1 class="text-center">Color and Text Settings</h1>
-        <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-4">
-            <form class="form-group"></form>
+  <div class="col-12 py-5">
+    <h1 class="text-center">Color and Text Settings</h1>
+    <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-4">
+      <form class="form-group"></form>
 
-            <p class="text-center">Font Settings</p>
+      <p class="text-center">Font Settings</p>
 
-            <!-- font family dropdown -->
-            <label for="font-family">Font:</label>
-            <select id="font-family" class="form-control mb-3">
-                <option value="1">Source Code Pro</option>
-                <option value="2">Courier New</option>
-                <option value="3">DM Mono</option>
-                <option value="4">Space Mono</option>
-            </select>
+      <!-- font family dropdown -->
+      <label for="font-family">Font:</label>
+      <select id="font-family" class="form-control mb-3">
+        <option value="1">Source Code Pro</option>
+        <option value="2">Courier New</option>
+        <option value="3">DM Mono</option>
+        <option value="4">Space Mono</option>
+      </select>
 
-            <!-- font weight range slider -->
-            <label for="font-weight">Font Weight:</label>
-            <div class="input-tooltip-wrapper">
-                <input type="range" min="100" max="900" value="800" step="100" class="slider col-10" id="font-weight">
-                <!-- custom font weight tooltip -->
-                <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip"
-                data-placement="top"
-                title="Increasing font weight increases brightness.">
-                ?
-                </button>
-            </div>
-            <p class="text-center mt-4">Color Settings</p>
+      <!-- font weight range slider -->
+      <label for="font-weight">Font Weight:</label>
+      <div class="input-tooltip-wrapper">
+        <input type="range" min="100" max="900" value="800" step="100" class="slider col-10" id="font-weight">
+        <!-- custom font weight tooltip -->
+        <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip" data-placement="top"
+          title="Increasing font weight increases brightness.">
+          ?
+        </button>
+      </div>
+      <p class="text-center mt-4">Color Settings</p>
 
-            <div class="color-settings">
+      <div class="color-settings">
 
-                <div class="setting-toggle-wrapper">
-                    <label for="setting-toggle-color">Font Color:</label>
-                    <select class="form-control" id="setting-toggle-color">
-                        <option>Color</option>
-                        <option>Black</option>
-                    </select>   
-                </div>
-
-
-                <div class="color-picker">
-                    <label for="background-color">Background Color:</label>
-                    <div class="input-tooltip-wrapper">
-                        <input type="color" id="background-color" value="#ffffff" class="ml-2 color-input col-10">
-                        <!-- custom background color tooltip -->
-                        <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip"
-                        data-placement="top"
-                        title="Black is a good choice for full color images.">
-                        ?
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <p class="text-center mt-4">Export Your Art</p>
-            <div>
-
-                <div class="theme-button mb-3" id="image-download"><i class="material-icons mr-2"
-                        id="upload-icon">image</i>Download As
-                    Image
-                </div>
-                <p class="hidden pb-4" id="image-download-prompt">Please allow up to a minute for your image to process
-                    and
-                    download. Do not kill the page.</p>
-
-                <div class="theme-button" id="clipboard-copy"><i class="material-icons mr-2"
-                        id="upload-icon">content_copy</i>Copy Text To
-                    Clipboard
-                </div>
-            </div>
+        <div class="setting-toggle-wrapper">
+          <label for="setting-toggle-color">Font Color:</label>
+          <select class="form-control" id="setting-toggle-color">
+            <option>Color</option>
+            <option>Black</option>
+          </select>
         </div>
+
+
+        <div class="color-picker">
+          <label for="background-color">Background Color:</label>
+          <div class="input-tooltip-wrapper">
+            <input type="color" id="background-color" value="#ffffff" class="ml-2 color-input col-10">
+            <!-- custom background color tooltip -->
+            <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip"
+              data-placement="top" title="Black is a good choice for full color images.">
+              ?
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center mt-4">Export Your Art</p>
+      <div>
+
+        <div class="theme-button mb-3" id="image-download"><i class="material-icons mr-2"
+            id="upload-icon">image</i>Download As
+          Image
+        </div>
+        <p class="hidden pb-4" id="image-download-prompt">Please allow up to a minute for your image to process
+          and
+          download. Do not kill the page.</p>
+
+        <div class="theme-button" id="clipboard-copy"><i class="material-icons mr-2"
+            id="upload-icon">content_copy</i>Copy Text To
+          Clipboard
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <section>
-    <div class="ascii-display-container">
-        <div class="ascii-display">
-            {% for row in asciiImage %}
-            <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}">{{pixel.char}}</span>{% endfor %}</p>
-            {% endfor %}
-        </div>
+  <div class="ascii-display-container">
+    <div class="ascii-display">
+      {% for row in asciiImage %}
+      <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}">{{pixel.char}}</span>{% endfor %}</p>
+      {% endfor %}
     </div>
+  </div>
 </section>
 
 {% endblock content %}
