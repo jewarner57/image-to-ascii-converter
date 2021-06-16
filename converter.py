@@ -1,36 +1,6 @@
 from PIL import Image
 from pixel import Pixel
 
-# previously written character keys
-char_key_1 = [
-    "#",
-    "@",
-    "X",
-    "W",
-    "B",
-    "&",
-    "M",
-    "G",
-    "F",
-    "V",
-    "C",
-    "J",
-    "?",
-    "7",
-    "I",
-    "1",
-    "=",
-    "/",
-    "*",
-    "~",
-    "-",
-    "_",
-]
-
-char_key_apples = ["#", "", "~", "`"]
-char_key_inverted = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
-char_key_classic = ["@", "&", "%", "#", "(", "/", "*", ",", "."]
-
 
 def make_image_ascii_string(image_path, character_key, width=80, height=None):
     """Given a list of pixels, returns the ascii representation of them
@@ -71,13 +41,13 @@ def reduce_image_size(pixels, maxwidth, maxheight=None):
     image_width = len(pixels[0])
     image_height = len(pixels)
 
-    height_ratio = image_width / image_height
+    height_ratio = (image_height * 2.9) / (image_width * 4)
 
     width_reduction_factor = int(image_width / maxwidth)
 
     # if no maxheight is given, make the height proportional to width
     if maxheight is None:
-        height_reduction_factor = int((image_height / (height_ratio * maxwidth)))
+        height_reduction_factor = int((image_height / ((height_ratio * maxwidth))))
     else:
         height_reduction_factor = int(image_height / maxheight)
 
