@@ -78,7 +78,7 @@
   <div class="ascii-display-container">
     <div class="ascii-display">
       {% for row in asciiImage %}
-      <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}">{{pixel.char}}</span>{% endfor %}</p>
+      <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}"></span>{{pixel.char}}</span>{% endfor %}</p>
       {% endfor %}
     </div>
   </div>

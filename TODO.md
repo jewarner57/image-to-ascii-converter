@@ -1,32 +1,26 @@
 ## Do
 * refactor image uploading to use flask-uploads
 
-* add averaging during height reduction to make columns look smoother
-
-* fix color averager method to work, and remove temp solution
-
 * image upload check should appear if the form starts with an image in it
   * for example if the user hits the back button the check should be there
-
-* find a way to allow for custom color picking for the text color of the output
 
 * style the 404 and 413 pages to be friendlier
 
 
-
-
 ## Do (User Experience Interview Feedback)
 * The view page should have the settings in a sidebar (if screen space permits) so that the user can look at their full image while they adjust settings
-
+* User should be able to view full image on a new blank tab
+* Download should be quicker and not freeze the page
+  * This is mostly so slow because of each character being wrapped in a span. If we could find a way to color without this the download would go much faster
+* find a way to allow for custom color picking for the text color of the output
+  * This might be an acceptable situation to use !important to force color over top of the spans
 
 ## Doing
-* Fix auto determine height to work better with landscape photos
-* Organize CSS styles and add index to css file
-
-
+* Organize CSS styles and add index (table of contents) to css file
 
 
 ## Done
+* Fix auto determine height to work better with landscape photos
 * submit button should fit theme better
 * Replace Toggle Buttons with Tabs or Dropdowns
   * Font Color - Done
