@@ -24,12 +24,12 @@ A web app for converting color images to beautiful ascii art with maximum freedo
 ---
 
 ##  <a name='Features'></a>Features
-  * Color image to conversion to ascii art
-  * Easy to use UI custom designed for this project
-  * Custom character sets for full control over the final product.
-  * Full control over fonts, colors, and size
-  * Conversion for image files up to 1 mb in online demo
-    * You can increase the limit if you run the project locally
+  * Color image to ascii art conversion
+  * Easy to use UI with extensive customization
+  * Full control over size, fonts, colors, and characters
+  * Custom character sets allow for full control over the final product.
+  * Conversion for image files up to 1 mb in size in online demo
+    * You can increase the limit when running the project locally by changing MAX_CONTENT_LENGTH in the root \_\_init\_\_.py to a larger value.
 
 ---
 
@@ -51,5 +51,5 @@ A web app for converting color images to beautiful ascii art with maximum freedo
 ---
 
 ##  <a name='Technologiesused'></a>Technologies used
-* Converter built with python
+* Converter built with python using PIL
 * Web application built with Flask and Jinja2
