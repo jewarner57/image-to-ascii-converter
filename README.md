@@ -34,11 +34,20 @@ A web app for converting color images to beautiful ascii art with maximum freedo
 ---
 
 ##  <a name='Howtoinstallconfiglaunch'></a>How to run locally?
+
+With Docker
+1. clone the repository
+2. navigate to the project's root directory 
+3. Generate the docker image: ```docker build -t img-to-ascii .```
+4. Run the image in a container: ```docker run -p 5000:5000 --rm --name flask-container img-to-ascii```
+5. Visit: 0.0.0.0:5000 in your browser.
+
+Without Docker
 1. clone the repository
 2. navigate to the project's root directory 
 3. install python dependencies from requirements.txt using: ```pip3 install -r ./requirements.txt```
 4. run: ```python3 ./app.py```
-5. Visit localhost:5000 in your browser
+5. Visit 0.0.0.0:5000 in your browser
 
 ---
 
