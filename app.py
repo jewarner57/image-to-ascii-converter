@@ -6,11 +6,14 @@ from flask import (
     flash,
     send_from_directory,
     current_app,
+    send_file,
+    jsonify,
 )
 from __init__ import app
 from image_upload import uploadImage, delete_file
-from converter import make_image_ascii_string
+from converter import make_image_ascii_string, create_image_from_ascii_string
 import os
+import json
 
 # Error Handler Routes
 
@@ -39,6 +42,16 @@ def home():
 def favicon():
     """Sends the favicon to the client"""
     return send_from_directory(os.path.join(app.root_path, "static"), "./favicon.ico")
+
+
+@app.route("/createImage", methods=["GET", "POST"])
+def createImage():
+    data = request.json["imageData"]
+    create_image_from_ascii_string(data)
+    # print(data)
+
+    filename = "./pil_text.png"
+    return send_file(filename, mimetype="image/png")
 
 
 @app.route("/convert", methods=["GET", "POST"])
@@ -76,7 +89,10 @@ def convert():
             os.remove(image_filepath)
 
             # the ascii image string
-            context = {"asciiImage": ascii_art}
+            context = {
+                "asciiImage": ascii_art,
+                "imageData": json.dumps(ascii_art, default=vars),
+            }
 
             return render_template("view.html", **context)
         else:

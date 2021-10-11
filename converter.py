@@ -36,11 +36,12 @@ def create_image_from_ascii_string(image_text):
     #     Place a colored character with the correct width and height offset
     for r in range(0, imageHeight - 1):
         for c in range(0, imageWidth - 1):
+
             d_img.text(
                 (int(fontWidth * c * 1.5), int(fontSize * r)),
-                image_text[r][c].char,
+                image_text[r][c],
                 font=fnt,
-                fill=(image_text[r][c].color),
+                fill=(255, 255, 255),
             )
 
     img.save("pil_text.png")
@@ -78,6 +79,7 @@ def get_image_pixels(image_path):
 
     # get list of raw pixels
     raw_pixels = list(im.getdata())
+    print(raw_pixels[0])
     width, height = im.size
 
     # process pixel list into a matrix
@@ -150,7 +152,7 @@ def make_ascii_string_from_pixels(pixels, ascii_key):
             pixels[row][col].getGrayscaleFromColor()
 
             # set the pixel to the corresponding char from the key
-            pixels[row][col].char = ascii_key[
+            pixels[row][col] = ascii_key[
                 pixels[row][col].grayscale % len(ascii_key) - 1
             ]
 

@@ -1,17 +1,35 @@
 $(function () {
 
-  // download ascii characters as image
-  $("#image-download").click(function () {
+  // create ascii image file and download
+  $("#image-download").click(async () => {
+    // Hide the download button and show loading bar
     $("#image-download-prompt").removeClass("hidden")
+    $("#image-download").addClass("hidden")
 
-    // Turn the ascii div into a canvas
-    html2canvas(document.querySelector(".ascii-display")).then(canvas => {
-      // Convert the canvas to an image and download it
-      download(canvas, "converted-image.png")
-    });
+    const response = await fetch('/createImage', {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ imageData }),
+    })
 
+    // Hide loading bar and show download button
+    $("#image-download-prompt").addClass("hidden")
+    $("#image-download").removeClass("hidden")
 
-    //$("#image-download-prompt").addClass("hidden")
+    // Get the image response and create a blob
+    const imageBlob = await response.blob()
+    // Turn the blob into a downloadable image url
+    const imageURL = URL.createObjectURL(imageBlob)
+
+    // Create a download link
+    const link = document.createElement('a')
+    link.href = imageURL
+    // Set the download filename to something unique
+    link.download = `img-to-ascii-${Date.now() % 1000}`
+    // Click the link and then remove it
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   })
 
   // copy element's inner text to clipboard

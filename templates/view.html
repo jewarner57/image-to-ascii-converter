@@ -61,9 +61,11 @@
             id="upload-icon">image</i>Download As
           Image
         </div>
-        <p class="hidden pb-4" id="image-download-prompt">Please allow up to a minute for your image to process
-          and
-          download. Do not kill the page.</p>
+
+        <div class="hidden pb-4" id="image-download-prompt">
+          <div class="loading-bar mb-2"></div>
+          <p>Please allow up to a minute for your image to process. Your image will be downloaded automatically.</p>
+        </div>
 
         <div class="theme-button" id="clipboard-copy"><i class="material-icons mr-2"
             id="upload-icon">content_copy</i>Copy Text To
@@ -87,6 +89,9 @@
 {% endblock content %}
 
 {% block scripts %}
+<script>
+  const imageData = {{ imageData| safe }};
+</script>
 <!-- html2 canvas for saving ascii text div as an image -->
 <script type="text/javascript" src="../static/html2canvas.js"></script>
 <!-- custom js -->
