@@ -16,19 +16,17 @@ def create_image_from_ascii_string(image_text):
     # Set the size to be the character width * number of characters
     imageHeight = len(image_text)
     imageWidth = len(image_text[0])
-    fontSize = 15
-    fontWidth = 15 * 0.6
+    fontSize = 20
+    fontWidth = fontSize * 0.5
 
     img = Image.new(
         "RGB",
-        (int(fontWidth * imageWidth), int(imageHeight * fontSize)),
+        (int(fontWidth * imageWidth * 1.5), int(imageHeight * fontSize)),
         color=(0, 0, 0),
     )
 
     # Get the chosen font
-    fnt = ImageFont.truetype(
-        "./static/fonts/RobotoMono-VariableFont_wght.ttf", fontSize
-    )
+    fnt = ImageFont.truetype("./static/fonts/RobotoMono-Bold.ttf", fontSize)
 
     # Draw the image
     d_img = ImageDraw.Draw(img)
@@ -39,7 +37,7 @@ def create_image_from_ascii_string(image_text):
     for r in range(0, imageHeight - 1):
         for c in range(0, imageWidth - 1):
             d_img.text(
-                (int(fontWidth * c), int(fontSize * r)),
+                (int(fontWidth * c * 1.5), int(fontSize * r)),
                 image_text[r][c].char,
                 font=fnt,
                 fill=(image_text[r][c].color),
