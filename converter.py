@@ -1,5 +1,51 @@
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 from pixel import Pixel
+
+
+def create_image_from_ascii_string(image_text):
+    # img = Image.new("RGB", (100, 30), color=(0, 0, 0))
+
+    # d = ImageDraw.Draw(img)
+
+    # fnt = ImageFont.truetype("./static/fonts/RobotoMono-VariableFont_wght.ttf", 15)
+    # d.text((0, 0), "Hello World", font=fnt, fill=(255, 255, 255))
+
+    # img.save("pil_text.png")
+
+    # Create the image with the correct background color
+    # Set the size to be the character width * number of characters
+    imageHeight = len(image_text)
+    imageWidth = len(image_text[0])
+    fontSize = 15
+    fontWidth = 15 * 0.6
+
+    img = Image.new(
+        "RGB",
+        (int(fontWidth * imageWidth), int(imageHeight * fontSize)),
+        color=(0, 0, 0),
+    )
+
+    # Get the chosen font
+    fnt = ImageFont.truetype(
+        "./static/fonts/RobotoMono-VariableFont_wght.ttf", fontSize
+    )
+
+    # Draw the image
+    d_img = ImageDraw.Draw(img)
+
+    # For each row
+    #   For each character
+    #     Place a colored character with the correct width and height offset
+    for r in range(0, imageHeight - 1):
+        for c in range(0, imageWidth - 1):
+            d_img.text(
+                (int(fontWidth * c), int(fontSize * r)),
+                image_text[r][c].char,
+                font=fnt,
+                fill=(255, 255, 255),
+            )
+
+    img.save("pil_text.png")
 
 
 def make_image_ascii_string(image_path, character_key, width=80, height=None):
@@ -20,6 +66,8 @@ def make_image_ascii_string(image_path, character_key, width=80, height=None):
 
     # get the string representation of the image
     image_text = make_ascii_string_from_pixels(reduced_pixels, character_key)
+
+    create_image_from_ascii_string(image_text)
 
     return image_text
 
