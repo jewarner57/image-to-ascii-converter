@@ -61,8 +61,10 @@ def create_image_from_ascii_string(
                 font=fnt,
                 fill=(fontColor),
             )
+    filename = "./static/images/conversions/conversion.png"
+    img.save(filename)
 
-    img.save("pil_text.png")
+    return filename
 
 
 def make_image_ascii_string(image_path, character_key, width=80, height=None):
