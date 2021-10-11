@@ -9,16 +9,24 @@ $(function () {
     // Hide the download button and show loading bar
     $("#image-download-prompt").removeClass("hidden")
     $("#image-download").addClass("hidden")
+    $("#download-error").text("")
 
-    const response = await fetch('/createImage', {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ imageData, backgroundColor, fontFamilyNumber, textColor }),
-    })
+    let response = ''
 
-    // Hide loading bar and show download button
-    $("#image-download-prompt").addClass("hidden")
-    $("#image-download").removeClass("hidden")
+    try {
+      response = await fetch('/createImage', {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ imageData, backgroundColor, fontFamilyNumber, textColor }),
+      })
+    }
+    catch (err) {
+      hideLoadingBar()
+      $("#download-error").text('Something went wrong and your image could not be downloaded. Try again in a few moments.')
+      return
+    }
+
+    hideLoadingBar()
 
     // Get the image response and create a blob
     const imageBlob = await response.blob()
@@ -35,6 +43,12 @@ $(function () {
     link.click()
     document.body.removeChild(link)
   })
+
+  function hideLoadingBar() {
+    // Hide loading bar and show download button
+    $("#image-download-prompt").addClass("hidden")
+    $("#image-download").removeClass("hidden")
+  }
 
   // copy element's inner text to clipboard
   $('#clipboard-copy').click(function () {
