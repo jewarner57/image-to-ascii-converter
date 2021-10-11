@@ -52,8 +52,9 @@ def createImage():
     image = request.json.get("imageData")
     backgroundColor = request.json.get("backgroundColor")
     fontFamilyNumber = request.json.get("fontFamilyNumber")
+    textColor = request.json.get("textColor")
 
-    create_image_from_ascii_string(image, backgroundColor, fontFamilyNumber)
+    create_image_from_ascii_string(image, backgroundColor, fontFamilyNumber, textColor)
     # print(data)
 
     filename = "./pil_text.png"

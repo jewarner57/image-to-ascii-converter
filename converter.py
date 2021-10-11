@@ -12,7 +12,9 @@ class SerializeablePixel(Pixel):
         )
 
 
-def create_image_from_ascii_string(image_text, backgroundColor, fontFamilyNumber):
+def create_image_from_ascii_string(
+    image_text, backgroundColor, fontFamilyNumber, textColor
+):
     # Create the image with the correct background color
     # Set the size to be the character width * number of characters
 
@@ -37,8 +39,6 @@ def create_image_from_ascii_string(image_text, backgroundColor, fontFamilyNumber
     )
 
     # Get the chosen font
-    print(f"./static/fonts/{fontName}.ttf")
-    print("---------------")
     fnt = ImageFont.truetype(f"./static/fonts/{fontName}.ttf", fontSize)
 
     # Draw the image
@@ -50,11 +50,16 @@ def create_image_from_ascii_string(image_text, backgroundColor, fontFamilyNumber
     for r in range(0, imageHeight - 1):
         for c in range(0, imageWidth - 1):
 
+            if textColor == "Black":
+                fontColor = (0, 0, 0)
+            else:
+                fontColor = tuple(image_text[r][c].get("color"))
+
             d_img.text(
                 (int(fontWidth * c * 1.5), int(fontSize * r)),
                 image_text[r][c].get("char"),
                 font=fnt,
-                fill=(tuple(image_text[r][c].get("color"))),
+                fill=(fontColor),
             )
 
     img.save("pil_text.png")

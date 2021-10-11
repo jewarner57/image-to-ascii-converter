@@ -2,6 +2,7 @@ $(function () {
 
   let backgroundColor = $("#background-color").val()
   let fontFamilyNumber = $("#font-family").val()
+  let textColor = $("#setting-toggle-color").val()
 
   // create ascii image file and download
   $("#image-download").click(async () => {
@@ -12,7 +13,7 @@ $(function () {
     const response = await fetch('/createImage', {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ imageData, backgroundColor, fontFamilyNumber }),
+      body: JSON.stringify({ imageData, backgroundColor, fontFamilyNumber, textColor }),
     })
 
     // Hide loading bar and show download button
@@ -63,12 +64,12 @@ $(function () {
 
   // change the text color
   $("#setting-toggle-color").on('input', function () {
-    select = $("#setting-toggle-color")
+    textColor = $("#setting-toggle-color").val()
 
-    if (select.val() === "Black") {
+    if (textColor === "Black") {
       $(".ascii-display").addClass("ascii-display-black")
     }
-    else if (select.val() === "Color") {
+    else if (textColor === "Color") {
       $(".ascii-display").removeClass("ascii-display-black")
     }
   })
