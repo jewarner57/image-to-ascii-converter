@@ -2,6 +2,7 @@ $(function () {
 
   // create ascii image file and download
   $("#image-download").click(async () => {
+    console.log(imageData)
     // Hide the download button and show loading bar
     $("#image-download-prompt").removeClass("hidden")
     $("#image-download").addClass("hidden")

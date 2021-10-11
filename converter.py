@@ -2,6 +2,16 @@ from PIL import Image, ImageDraw, ImageFont
 from pixel import Pixel
 
 
+class SerializeablePixel(Pixel):
+    def __init__(self, pixel):
+        super().__init__(pixel)
+
+    def __json__(self):
+        return dict(
+            {"color": self.color, "char": self.char, "grayscale": self.grayscale}
+        )
+
+
 def create_image_from_ascii_string(image_text):
     # img = Image.new("RGB", (100, 30), color=(0, 0, 0))
 
@@ -14,10 +24,11 @@ def create_image_from_ascii_string(image_text):
 
     # Create the image with the correct background color
     # Set the size to be the character width * number of characters
+
     imageHeight = len(image_text)
     imageWidth = len(image_text[0])
     fontSize = 20
-    fontWidth = fontSize * 0.6
+    fontWidth = fontSize * 0.5
 
     img = Image.new(
         "RGB",
@@ -39,9 +50,9 @@ def create_image_from_ascii_string(image_text):
 
             d_img.text(
                 (int(fontWidth * c * 1.5), int(fontSize * r)),
-                image_text[r][c],
+                image_text[r][c].get("char"),
                 font=fnt,
-                fill=(255, 255, 255),
+                fill=(tuple(image_text[r][c].get("color"))),
             )
 
     img.save("pil_text.png")
@@ -66,8 +77,6 @@ def make_image_ascii_string(image_path, character_key, width=80, height=None):
     # get the string representation of the image
     image_text = make_ascii_string_from_pixels(reduced_pixels, character_key)
 
-    create_image_from_ascii_string(image_text)
-
     return image_text
 
 
@@ -79,7 +88,6 @@ def get_image_pixels(image_path):
 
     # get list of raw pixels
     raw_pixels = list(im.getdata())
-    print(raw_pixels[0])
     width, height = im.size
 
     # process pixel list into a matrix
@@ -127,7 +135,7 @@ def reduce_image_size(pixels, width_reduction_factor, height_reduction_factor):
 
         while column < len(pixels[0]):
 
-            pixel = Pixel(pixels[row][column])
+            pixel = SerializeablePixel(pixels[row][column])
 
             row_list.append(pixel)
 
@@ -152,7 +160,7 @@ def make_ascii_string_from_pixels(pixels, ascii_key):
             pixels[row][col].getGrayscaleFromColor()
 
             # set the pixel to the corresponding char from the key
-            pixels[row][col] = ascii_key[
+            pixels[row][col].char = ascii_key[
                 pixels[row][col].grayscale % len(ascii_key) - 1
             ]
 

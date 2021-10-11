@@ -1,3 +1,6 @@
+from json_fix import fix_it
+
+fix_it()
 from flask import (
     redirect,
     render_template,
@@ -91,7 +94,7 @@ def convert():
             # the ascii image string
             context = {
                 "asciiImage": ascii_art,
-                "imageData": json.dumps(ascii_art, default=vars),
+                "imageData": json.dumps(ascii_art),
             }
 
             return render_template("view.html", **context)
