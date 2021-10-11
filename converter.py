@@ -42,7 +42,7 @@ def create_image_from_ascii_string(image_text):
                 (int(fontWidth * c), int(fontSize * r)),
                 image_text[r][c].char,
                 font=fnt,
-                fill=(255, 255, 255),
+                fill=(image_text[r][c].color),
             )
 
     img.save("pil_text.png")
