@@ -201,3 +201,24 @@ input[type=checkbox] {
     justify-content: center;
     padding: 20px;
 }
+
+/* loading bar */
+.loading-bar {
+  background: linear-gradient(-45deg, #6da86d, #fff);
+  background-size: 400% 400%;
+  background-position: 200% 0%;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+	animation: loading 2s ease-out infinite;
+  background-color:#fff;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}

@@ -17,7 +17,7 @@ def create_image_from_ascii_string(image_text):
     imageHeight = len(image_text)
     imageWidth = len(image_text[0])
     fontSize = 20
-    fontWidth = fontSize * 0.5
+    fontWidth = fontSize * 0.6
 
     img = Image.new(
         "RGB",
