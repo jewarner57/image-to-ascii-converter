@@ -12,32 +12,34 @@ class SerializeablePixel(Pixel):
         )
 
 
-def create_image_from_ascii_string(image_text):
-    # img = Image.new("RGB", (100, 30), color=(0, 0, 0))
-
-    # d = ImageDraw.Draw(img)
-
-    # fnt = ImageFont.truetype("./static/fonts/RobotoMono-VariableFont_wght.ttf", 15)
-    # d.text((0, 0), "Hello World", font=fnt, fill=(255, 255, 255))
-
-    # img.save("pil_text.png")
-
+def create_image_from_ascii_string(image_text, backgroundColor, fontFamilyNumber):
     # Create the image with the correct background color
     # Set the size to be the character width * number of characters
+
+    fonts = {
+        1: "SourceCodePro-Black",
+        2: "CourierPrime-Bold",
+        3: "DMMono-Medium",
+        4: "SpaceMono-Bold",
+        5: "RobotoMono-Bold",
+    }
 
     imageHeight = len(image_text)
     imageWidth = len(image_text[0])
     fontSize = 20
+    fontName = fonts.get(int(fontFamilyNumber))
     fontWidth = fontSize * 0.5
 
     img = Image.new(
         "RGB",
         (int(fontWidth * imageWidth * 1.5), int(imageHeight * fontSize)),
-        color=(0, 0, 0),
+        color=backgroundColor,
     )
 
     # Get the chosen font
-    fnt = ImageFont.truetype("./static/fonts/RobotoMono-Bold.ttf", fontSize)
+    print(f"./static/fonts/{fontName}.ttf")
+    print("---------------")
+    fnt = ImageFont.truetype(f"./static/fonts/{fontName}.ttf", fontSize)
 
     # Draw the image
     d_img = ImageDraw.Draw(img)

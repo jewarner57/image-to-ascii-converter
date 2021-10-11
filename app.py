@@ -49,8 +49,11 @@ def favicon():
 
 @app.route("/createImage", methods=["GET", "POST"])
 def createImage():
-    data = request.json["imageData"]
-    create_image_from_ascii_string(data)
+    image = request.json.get("imageData")
+    backgroundColor = request.json.get("backgroundColor")
+    fontFamilyNumber = request.json.get("fontFamilyNumber")
+
+    create_image_from_ascii_string(image, backgroundColor, fontFamilyNumber)
     # print(data)
 
     filename = "./pil_text.png"

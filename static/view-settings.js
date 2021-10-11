@@ -1,8 +1,10 @@
 $(function () {
 
+  let backgroundColor = $("#background-color").val()
+  let fontFamilyNumber = $("#font-family").val()
+
   // create ascii image file and download
   $("#image-download").click(async () => {
-    console.log(imageData)
     // Hide the download button and show loading bar
     $("#image-download-prompt").removeClass("hidden")
     $("#image-download").addClass("hidden")
@@ -10,7 +12,7 @@ $(function () {
     const response = await fetch('/createImage', {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ imageData }),
+      body: JSON.stringify({ imageData, backgroundColor, fontFamilyNumber }),
     })
 
     // Hide loading bar and show download button
@@ -74,20 +76,20 @@ $(function () {
   // change background color
   $("#background-color").on('input', function () {
 
-    color = $("#background-color").val()
+    backgroundColor = $("#background-color").val()
 
-    $(".ascii-display").css({ "background-color": color })
+    $(".ascii-display").css({ "background-color": backgroundColor })
 
   })
 
   // change the font family
   $("#font-family").change(function () {
-    fontFamilyNum = $("#font-family").val()
+    fontFamilyNumber = $("#font-family").val()
     font = ""
 
-    console.log(fontFamilyNum)
+    console.log(fontFamilyNumber)
 
-    switch (fontFamilyNum) {
+    switch (fontFamilyNumber) {
       case "1":
         font = "'Source Code Pro', monospace"
         break;
@@ -102,6 +104,9 @@ $(function () {
 
       case "4":
         font = "'Space Mono', monospace"
+        break;
+      case "5":
+        font = "'Roboto Mono', monospace"
         break;
 
       default:
