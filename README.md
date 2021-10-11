@@ -1,5 +1,10 @@
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fimgtoascii.herokuapp.com%2F) 
+![GitHub repo size](https://img.shields.io/github/repo-size/jewarner57/image-to-ascii-converter)  
+# Img To Ascii  
 ![Logo](./static/images/logo-image.png)
-# Img To Ascii 
+
+
+
 A web app for converting color images to beautiful ascii art with maximum freedom and customization.
 
 ---
