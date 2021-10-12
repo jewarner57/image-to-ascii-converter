@@ -1,18 +1,54 @@
 $(function () {
 
-  // download ascii characters as image
-  $("#image-download").click(function () {
+  let backgroundColor = $("#background-color").val()
+  let fontFamilyNumber = $("#font-family").val()
+  let textColor = $("#setting-toggle-color").val()
+
+  // create ascii image file and download
+  $("#image-download").click(async () => {
+    // Hide the download button and show loading bar
     $("#image-download-prompt").removeClass("hidden")
+    $("#image-download").addClass("hidden")
+    $("#download-error").text("")
 
-    // Turn the ascii div into a canvas
-    html2canvas(document.querySelector(".ascii-display")).then(canvas => {
-      // Convert the canvas to an image and download it
-      download(canvas, "converted-image.png")
-    });
+    let response = ''
 
+    try {
+      response = await fetch('/createImage', {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ imageData, backgroundColor, fontFamilyNumber, textColor }),
+      })
+    }
+    catch (err) {
+      hideLoadingBar()
+      $("#download-error").text('Something went wrong and your image could not be downloaded. Try again in a few moments.')
+      return
+    }
 
-    //$("#image-download-prompt").addClass("hidden")
+    hideLoadingBar()
+
+    // Get the image response and create a blob
+    const imageBlob = await response.blob()
+    // Turn the blob into a downloadable image url
+    const imageURL = URL.createObjectURL(imageBlob)
+
+    // Create a download link
+    const link = document.createElement('a')
+    link.href = imageURL
+    // Set the download filename to something unique
+    link.download = `img-to-ascii-${Date.now() % 1000}`
+    // Click the link and then remove it
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   })
+
+  function hideLoadingBar() {
+    // Hide loading bar and show download button
+    $("#image-download-prompt").addClass("hidden")
+    $("#image-download").removeClass("hidden")
+  }
 
   // copy element's inner text to clipboard
   $('#clipboard-copy').click(function () {
@@ -42,12 +78,12 @@ $(function () {
 
   // change the text color
   $("#setting-toggle-color").on('input', function () {
-    select = $("#setting-toggle-color")
+    textColor = $("#setting-toggle-color").val()
 
-    if (select.val() === "Black") {
+    if (textColor === "Black") {
       $(".ascii-display").addClass("ascii-display-black")
     }
-    else if (select.val() === "Color") {
+    else if (textColor === "Color") {
       $(".ascii-display").removeClass("ascii-display-black")
     }
   })
@@ -55,20 +91,20 @@ $(function () {
   // change background color
   $("#background-color").on('input', function () {
 
-    color = $("#background-color").val()
+    backgroundColor = $("#background-color").val()
 
-    $(".ascii-display").css({ "background-color": color })
+    $(".ascii-display").css({ "background-color": backgroundColor })
 
   })
 
   // change the font family
   $("#font-family").change(function () {
-    fontFamilyNum = $("#font-family").val()
+    fontFamilyNumber = $("#font-family").val()
     font = ""
 
-    console.log(fontFamilyNum)
+    console.log(fontFamilyNumber)
 
-    switch (fontFamilyNum) {
+    switch (fontFamilyNumber) {
       case "1":
         font = "'Source Code Pro', monospace"
         break;
@@ -83,6 +119,9 @@ $(function () {
 
       case "4":
         font = "'Space Mono', monospace"
+        break;
+      case "5":
+        font = "'Roboto Mono', monospace"
         break;
 
       default:

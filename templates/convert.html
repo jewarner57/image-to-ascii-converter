@@ -92,9 +92,7 @@
           <p>Max upload size is: <span id="maxUpload">{{uploadSize}}</span> Megabytes</p>
 
           <div class="progress my-3 hidden" id="conversion-progress">
-            <div class="progress-bar progress-bar-striped bg-success progress-bar-animated " role="progressbar"
-              style="width:100%">
-            </div>
+            <div class="loading-bar"></div>
           </div>
 
           {% for message in get_flashed_messages() %}

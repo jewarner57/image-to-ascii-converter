@@ -16,6 +16,7 @@
         <option value="2">Courier New</option>
         <option value="3">DM Mono</option>
         <option value="4">Space Mono</option>
+        <option value="5">Roboto Mono</option>
       </select>
 
       <!-- font weight range slider -->
@@ -28,7 +29,7 @@
           ?
         </button>
       </div>
-      <p class="text-center mt-4">Color Settings</p>
+      <p class="text-center mt-4 mb-0">Color Settings</p>
 
       <div class="color-settings">
 
@@ -41,7 +42,7 @@
         </div>
 
 
-        <div class="color-picker">
+        <div class="color-picker mt-3">
           <label for="background-color">Background Color:</label>
           <div class="input-tooltip-wrapper">
             <input type="color" id="background-color" value="#ffffff" class="ml-2 color-input col-10">
@@ -61,9 +62,16 @@
             id="upload-icon">image</i>Download As
           Image
         </div>
-        <p class="hidden pb-4" id="image-download-prompt">Please allow up to a minute for your image to process
-          and
-          download. Do not kill the page.</p>
+
+        <div class="hidden pb-2" id="image-download-prompt">
+          <div class="loading-bar mb-2"></div>
+          <p>Please allow up to a minute for your image to process. Your image will be downloaded automatically.</p>
+        </div>
+
+        <div class="pb-2">
+          <p class="errorText text-center" id="download-error"></p>
+        </div>
+
 
         <div class="theme-button" id="clipboard-copy"><i class="material-icons mr-2"
             id="upload-icon">content_copy</i>Copy Text To
@@ -87,6 +95,9 @@
 {% endblock content %}
 
 {% block scripts %}
+<script>
+  const imageData = {{ imageData| safe }};
+</script>
 <!-- html2 canvas for saving ascii text div as an image -->
 <script type="text/javascript" src="../static/html2canvas.js"></script>
 <!-- custom js -->

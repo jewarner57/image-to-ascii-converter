@@ -1,5 +1,10 @@
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fimgtoascii.herokuapp.com%2F) 
+![GitHub repo size](https://img.shields.io/github/repo-size/jewarner57/image-to-ascii-converter)  
+# Img To Ascii  
 ![Logo](./static/images/logo-image.png)
-# Img To Ascii 
+
+
+
 A web app for converting color images to beautiful ascii art with maximum freedom and customization.
 
 ---
@@ -38,8 +43,8 @@ A web app for converting color images to beautiful ascii art with maximum freedo
 With Docker
 1. clone the repository
 2. navigate to the project's root directory 
-3. Generate the docker image: ```docker build -t img-to-ascii .```
-4. Run the image in a container: ```docker run -p 5000:5000 --rm --name flask-container img-to-ascii```
+3. Generate the docker image: ```docker compose build```
+4. Run the image in a container: ```docker compose up```
 5. Visit: 0.0.0.0:5000 in your browser.
 
 Without Docker

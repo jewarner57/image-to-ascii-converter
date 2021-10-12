@@ -1,5 +1,70 @@
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 from pixel import Pixel
+
+
+class SerializeablePixel(Pixel):
+    def __init__(self, pixel):
+        super().__init__(pixel)
+
+    def __json__(self):
+        return dict(
+            {"color": self.color, "char": self.char, "grayscale": self.grayscale}
+        )
+
+
+def create_image_from_ascii_string(
+    image_text, backgroundColor, fontFamilyNumber, textColor
+):
+    # Create the image with the correct background color
+    # Set the size to be the character width * number of characters
+
+    fonts = {
+        1: "SourceCodePro-Black",
+        2: "CourierPrime-Bold",
+        3: "DMMono-Medium",
+        4: "SpaceMono-Bold",
+        5: "RobotoMono-Bold",
+    }
+
+    imageHeight = len(image_text)
+    imageWidth = len(image_text[0])
+    fontSize = 20
+    fontName = fonts.get(int(fontFamilyNumber))
+    fontWidth = fontSize * 0.5
+
+    img = Image.new(
+        "RGB",
+        (int(fontWidth * imageWidth * 1.5), int(imageHeight * fontSize)),
+        color=backgroundColor,
+    )
+
+    # Get the chosen font
+    fnt = ImageFont.truetype(f"./static/fonts/{fontName}.ttf", fontSize)
+
+    # Draw the image
+    d_img = ImageDraw.Draw(img)
+
+    # For each row
+    #   For each character
+    #     Place a colored character with the correct width and height offset
+    for r in range(0, imageHeight - 1):
+        for c in range(0, imageWidth - 1):
+
+            if textColor == "Black":
+                fontColor = (0, 0, 0)
+            else:
+                fontColor = tuple(image_text[r][c].get("color"))
+
+            d_img.text(
+                (int(fontWidth * c * 1.5), int(fontSize * r)),
+                image_text[r][c].get("char"),
+                font=fnt,
+                fill=(fontColor),
+            )
+    filename = "./static/images/conversions/conversion.png"
+    img.save(filename)
+
+    return filename
 
 
 def make_image_ascii_string(image_path, character_key, width=80, height=None):
@@ -79,7 +144,7 @@ def reduce_image_size(pixels, width_reduction_factor, height_reduction_factor):
 
         while column < len(pixels[0]):
 
-            pixel = Pixel(pixels[row][column])
+            pixel = SerializeablePixel(pixels[row][column])
 
             row_list.append(pixel)
 
