@@ -169,4 +169,5 @@ $("#fullscreen-zoom-slider").on('input', function () {
   zoomFactor = $("#fullscreen-zoom-slider").val()
 
   $("#ascii-text-wrapper").css({ 'transform': 'scale(' + zoomFactor + ')' });
+  $("#ascii-text-wrapper").css({ 'transform-origin': '0% 0%' });
 })
