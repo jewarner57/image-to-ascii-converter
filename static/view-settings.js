@@ -81,10 +81,10 @@ $(function () {
     textColor = $("#setting-toggle-color").val()
 
     if (textColor === "Black") {
-      $(".ascii-display").addClass("ascii-display-black")
+      $("#ascii-text-wrapper").addClass("ascii-display-black")
     }
     else if (textColor === "Color") {
-      $(".ascii-display").removeClass("ascii-display-black")
+      $("#ascii-text-wrapper").removeClass("ascii-display-black")
     }
   })
 
