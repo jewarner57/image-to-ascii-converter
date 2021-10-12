@@ -81,10 +81,10 @@ $(function () {
     textColor = $("#setting-toggle-color").val()
 
     if (textColor === "Black") {
-      $(".ascii-display").addClass("ascii-display-black")
+      $("#ascii-text-wrapper").addClass("ascii-display-black")
     }
     else if (textColor === "Color") {
-      $(".ascii-display").removeClass("ascii-display-black")
+      $("#ascii-text-wrapper").removeClass("ascii-display-black")
     }
   })
 
@@ -133,30 +133,41 @@ $(function () {
   })
 })
 
-/* Canvas Donwload */
-/* Convert a canvas into an image and download it */
-/* By Jose Quintana - https://codepen.io/joseluisq/pen/mnkLu */
-function download(canvas, filename) {
-  // create an "off-screen" anchor tag
-  var lnk = document.createElement('a'), e;
+// Fullscreen preview
+let isFullscreen = false
+let zoomFactor = 1
+$("#fullscreenButton").on('click', function () {
+  if (isFullscreen) {
+    // $("#ascii-text-wrapper").css({ 'transform': 'scale(' + 1 + ')' });
 
-  // the key here is to set the download attribute of the a tag
-  lnk.download = filename;
+    $(".ascii-display").removeClass("ascii-fullscreen-display")
 
-  // convert canvas content to data-uri for link. When download
-  // attribute is set the content pointed to by link will be
-  // pushed as "download" in HTML5 capable browsers
-  lnk.href = canvas.toDataURL("image/png;base64");
+    $("#fullscreenButton").removeClass("fullscreenButton-fullscreen")
+    $("#fullscreenButton").addClass("fullscreenButton-closed")
 
-  // create a "fake" click-event to trigger the download
-  if (document.createEvent) {
-    e = document.createEvent("MouseEvents");
-    e.initMouseEvent("click", true, true, window,
-      0, 0, 0, 0, 0, false, false, false,
-      false, 0, null);
-
-    lnk.dispatchEvent(e);
-  } else if (lnk.fireEvent) {
-    lnk.fireEvent("onclick");
+    $("#fullscreen-zoom").removeClass("fullscreen-zoom-open")
+    $("#fullscreen-zoom").addClass("fullscreen-zoom-closed")
+    isFullscreen = false
   }
-}
+  else {
+    // $("#ascii-text-wrapper").css({ 'transform': 'scale(' + zoomFactor + ')' });
+
+    $(".ascii-display").addClass("ascii-fullscreen-display")
+
+    $("#fullscreenButton").addClass("fullscreenButton-fullscreen")
+    $("#fullscreenButton").removeClass("fullscreenButton-closed")
+
+    $("#fullscreen-zoom").removeClass("fullscreen-zoom-closed")
+    $("#fullscreen-zoom").addClass("fullscreen-zoom-open")
+    isFullscreen = true
+  }
+})
+
+// zoom fullscreen preview
+$("#fullscreen-zoom-slider").on('input', function () {
+
+  zoomFactor = $("#fullscreen-zoom-slider").val()
+
+  $("#ascii-text-wrapper").css({ 'transform': 'scale(' + zoomFactor + ')' });
+  $("#ascii-text-wrapper").css({ 'transform-origin': '0% 0%' });
+})

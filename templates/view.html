@@ -4,7 +4,7 @@
 <section>
   <div class="col-12 py-5">
     <h1 class="text-center">Color and Text Settings</h1>
-    <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-4">
+    <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-3">
       <form class="form-group"></form>
 
       <p class="text-center">Font Settings</p>
@@ -55,6 +55,26 @@
         </div>
       </div>
 
+      <p class="text-center mt-4 mb-0">Download Preview</p>
+      <div class="ascii-display-container">
+        <div id="fullscreenButton" class="fullscreenButton-closed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24">
+            <path
+              d="M24 9h-2v-5h-7v-2h9v7zm-9 13v-2h7v-5h2v7h-9zm-15-7h2v5h7v2h-9v-7zm9-13v2h-7v5h-2v-7h9zm11 4h-16v12h16v-12z" />
+          </svg>
+        </div>
+        <div id="fullscreen-zoom" class="fullscreen-zoom-closed">
+          <input type="range" min="0.1" max="2" value="1" step="0.05" class="slider" id="fullscreen-zoom-slider">
+        </div>
+        <div class="ascii-display">
+          <div id="ascii-text-wrapper">
+            {% for row in asciiImage %}
+            <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}">{{pixel.char}}</span>{% endfor %}</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
       <p class="text-center mt-4">Export Your Art</p>
       <div>
 
@@ -83,13 +103,7 @@
 </section>
 
 <section>
-  <div class="ascii-display-container">
-    <div class="ascii-display">
-      {% for row in asciiImage %}
-      <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}">{{pixel.char}}</span>{% endfor %}</p>
-      {% endfor %}
-    </div>
-  </div>
+
 </section>
 
 {% endblock content %}
