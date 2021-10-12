@@ -55,6 +55,9 @@ body {
     max-height: 50vh;
     background-color: white;
     border: 2px solid rgb(194, 194, 194);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .ascii-fullscreen-display {
@@ -66,6 +69,29 @@ body {
   z-index: 998;
   top: 0;
   left: 0;
+}
+
+.fullscreen-zoom-closed {
+  display: none;
+}
+
+.fullscreen-zoom-open {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  max-width: 200px;
+  width: 25vw;
+  z-index: 999;
+  background-color: black;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#ascii-text-wrapper {
+  transition: all 0.3s ease-in-out 0.2s;
 }
 
 #fullscreenButton {

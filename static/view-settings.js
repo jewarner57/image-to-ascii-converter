@@ -135,17 +135,38 @@ $(function () {
 
 // Fullscreen preview
 let isFullscreen = false
+let zoomFactor = 1
 $("#fullscreenButton").on('click', function () {
   if (isFullscreen) {
+    // $("#ascii-text-wrapper").css({ 'transform': 'scale(' + 1 + ')' });
+
     $(".ascii-display").removeClass("ascii-fullscreen-display")
+
     $("#fullscreenButton").removeClass("fullscreenButton-fullscreen")
     $("#fullscreenButton").addClass("fullscreenButton-closed")
+
+    $("#fullscreen-zoom").removeClass("fullscreen-zoom-open")
+    $("#fullscreen-zoom").addClass("fullscreen-zoom-closed")
     isFullscreen = false
   }
   else {
+    // $("#ascii-text-wrapper").css({ 'transform': 'scale(' + zoomFactor + ')' });
+
     $(".ascii-display").addClass("ascii-fullscreen-display")
+
     $("#fullscreenButton").addClass("fullscreenButton-fullscreen")
     $("#fullscreenButton").removeClass("fullscreenButton-closed")
+
+    $("#fullscreen-zoom").removeClass("fullscreen-zoom-closed")
+    $("#fullscreen-zoom").addClass("fullscreen-zoom-open")
     isFullscreen = true
   }
+})
+
+// zoom fullscreen preview
+$("#fullscreen-zoom-slider").on('input', function () {
+
+  zoomFactor = $("#fullscreen-zoom-slider").val()
+
+  $("#ascii-text-wrapper").css({ 'transform': 'scale(' + zoomFactor + ')' });
 })
