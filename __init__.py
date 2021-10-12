@@ -7,6 +7,7 @@ load_dotenv()
 
 # create flask app
 app = Flask(__name__)
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 # set allowed upload extensions
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
