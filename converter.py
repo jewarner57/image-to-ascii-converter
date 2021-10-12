@@ -12,6 +12,46 @@ class SerializeablePixel(Pixel):
         )
 
 
+def create_gif_from_images(images, backgroundColor, fontFamilyNumber, textColor):
+    createdImages = []
+
+    for image in images:
+        createdImages.append(
+            create_image_from_ascii_string(
+                image, backgroundColor, fontFamilyNumber, textColor
+            )
+        )
+
+    filename = "./static/images/conversions/gifConversion.gif"
+    createdImages[0].save(
+        filename,
+        save_all=True,
+        append_images=createdImages,
+        duration=40,
+    )
+
+    return filename
+
+
+def make_gif_ascii_string(image_path, character_key, width=80, height=None):
+    width = int(width)
+    if height is not None:
+        height = int(height)
+
+    gifImage = Image.open(image_path)
+
+    firstImage = make_image_ascii_string(gifImage, character_key, width, height)
+    frames = []
+
+    for frame in range(0, gifImage.n_frames):
+        gifImage.seek(frame)
+        frames.append(make_image_ascii_string(gifImage, character_key, width, height))
+
+    responseData = {"previewImage": firstImage, "frames": frames}
+
+    return responseData
+
+
 def create_image_from_ascii_string(
     image_text, backgroundColor, fontFamilyNumber, textColor
 ):
@@ -61,16 +101,18 @@ def create_image_from_ascii_string(
                 font=fnt,
                 fill=(fontColor),
             )
-    filename = "./static/images/conversions/conversion.png"
-    img.save(filename)
 
-    return filename
+    return img
 
 
 def make_image_ascii_string(image_path, character_key, width=80, height=None):
     """Given a list of pixels, returns the ascii representation of them
     Takes the pixels of the image, the character length of the ascii result
     and the height in number of lines."""
+
+    width = int(width)
+    if height is not None:
+        height = int(height)
 
     # get a matrix of pixels from an image
     pixels = get_image_pixels(image_path)
@@ -89,9 +131,15 @@ def make_image_ascii_string(image_path, character_key, width=80, height=None):
     return image_text
 
 
-def get_image_pixels(image_path):
-    # open the image
-    im = Image.open(image_path)
+def get_image_pixels(image):
+
+    if type(image) is not str:
+        # get the imageObject
+        im = image
+    else:
+        # open the image
+        im = Image.open(image)
+
     # convert the image to use rgb format
     im = im.convert("RGB")
 

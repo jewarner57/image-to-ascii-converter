@@ -13,8 +13,13 @@ from flask import (
     jsonify,
 )
 from __init__ import app
-from image_upload import uploadImage, delete_file
-from converter import make_image_ascii_string, create_image_from_ascii_string
+from image_upload import uploadImage
+from converter import (
+    make_image_ascii_string,
+    create_image_from_ascii_string,
+    make_gif_ascii_string,
+    create_gif_from_images,
+)
 import os
 import json
 
@@ -47,6 +52,20 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, "static"), "./favicon.ico")
 
 
+@app.route("/createGif", methods=["GET", "POST"])
+def createGif():
+    images = request.json.get("imageData")
+    backgroundColor = request.json.get("backgroundColor")
+    fontFamilyNumber = request.json.get("fontFamilyNumber")
+    textColor = request.json.get("textColor")
+
+    filename = create_gif_from_images(
+        images, backgroundColor, fontFamilyNumber, textColor
+    )
+
+    return send_file(filename, mimetype="image/gif")
+
+
 @app.route("/createImage", methods=["GET", "POST"])
 def createImage():
     image = request.json.get("imageData")
@@ -54,9 +73,12 @@ def createImage():
     fontFamilyNumber = request.json.get("fontFamilyNumber")
     textColor = request.json.get("textColor")
 
-    filename = create_image_from_ascii_string(
+    img = create_image_from_ascii_string(
         image, backgroundColor, fontFamilyNumber, textColor
     )
+
+    filename = "./static/images/conversions/conversion.png"
+    img.save(filename, quality=80)
 
     return send_file(filename, mimetype="image/png")
 
@@ -67,7 +89,9 @@ def convert():
     if request.method == "POST":
 
         # upload an image from the user
-        image_filepath = uploadImage(request)
+        image_info = uploadImage(request)
+        image_filepath = image_info.get("filepath")
+        image_extension = image_info.get("extension")
 
         # if the user uploaded a valid image
         if image_filepath is not None:
@@ -82,15 +106,25 @@ def convert():
             else:
                 char_key = char_key.split(" ")
 
-            # create the ascii art from the image
-            if image_height is not None:
-                ascii_art = make_image_ascii_string(
-                    image_filepath, char_key, int(image_width), int(image_height)
-                )
-            else:
-                ascii_art = make_image_ascii_string(
-                    image_filepath, char_key, int(image_width)
-                )
+                # create the ascii art from the image
+                if image_extension == "gif":
+                    gif_ascii_data = make_gif_ascii_string(
+                        image_filepath,
+                        char_key,
+                        image_width,
+                        image_height,
+                    )
+
+                    ascii_art = gif_ascii_data.get("previewImage")
+                    ascii_art_data = gif_ascii_data.get("frames")
+                else:
+                    ascii_art = make_image_ascii_string(
+                        image_filepath,
+                        char_key,
+                        image_width,
+                        image_height,
+                    )
+                    ascii_art_data = ascii_art
 
             # remove the image
             os.remove(image_filepath)
@@ -98,7 +132,8 @@ def convert():
             # the ascii image string
             context = {
                 "asciiImage": ascii_art,
-                "imageData": json.dumps(ascii_art),
+                "imageData": json.dumps(ascii_art_data),
+                "isAnimated": json.dumps(image_extension == "gif"),
             }
 
             return render_template("view.html", **context)
