@@ -10,10 +10,10 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 # set allowed upload extensions
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
 # set image upload folder
 UPLOAD_FOLDER = "./static/images/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 # set max image upload size
-app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024
+app.config["MAX_CONTENT_LENGTH"] = 4 * 1024 * 1024

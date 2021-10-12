@@ -13,8 +13,10 @@ $(function () {
 
     let response = ''
 
+    convertUrl = isAnimated ? '/createGif' : '/createImage'
+
     try {
-      response = await fetch('/createImage', {
+      response = await fetch(convertUrl, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ imageData, backgroundColor, fontFamilyNumber, textColor }),
