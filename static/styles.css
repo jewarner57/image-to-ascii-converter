@@ -51,6 +51,46 @@ body {
     font-weight: 400;
     font-size: 20px;
     padding-top: 10px;
+    overflow: scroll;
+    max-height: 50vh;
+    background-color: white;
+    border: 2px solid rgb(194, 194, 194);
+}
+
+.ascii-fullscreen-display {
+  margin: 0;
+  max-height: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  top: 0;
+  left: 0;
+}
+
+#fullscreenButton {
+  transition: 0.5s border-radius;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 999;
+}
+
+.fullscreenButton-closed {
+  position: absolute;
+  margin: 20px;
+}
+
+.fullscreenButton-fullscreen {
+  margin: 0;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+#fullscreenButton:hover {
+  transition: 0.5s all;
+  border-radius: 100%;
 }
 
 .ascii-display-black > p > span {

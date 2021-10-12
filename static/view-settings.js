@@ -133,30 +133,19 @@ $(function () {
   })
 })
 
-/* Canvas Donwload */
-/* Convert a canvas into an image and download it */
-/* By Jose Quintana - https://codepen.io/joseluisq/pen/mnkLu */
-function download(canvas, filename) {
-  // create an "off-screen" anchor tag
-  var lnk = document.createElement('a'), e;
-
-  // the key here is to set the download attribute of the a tag
-  lnk.download = filename;
-
-  // convert canvas content to data-uri for link. When download
-  // attribute is set the content pointed to by link will be
-  // pushed as "download" in HTML5 capable browsers
-  lnk.href = canvas.toDataURL("image/png;base64");
-
-  // create a "fake" click-event to trigger the download
-  if (document.createEvent) {
-    e = document.createEvent("MouseEvents");
-    e.initMouseEvent("click", true, true, window,
-      0, 0, 0, 0, 0, false, false, false,
-      false, 0, null);
-
-    lnk.dispatchEvent(e);
-  } else if (lnk.fireEvent) {
-    lnk.fireEvent("onclick");
+// Fullscreen preview
+let isFullscreen = false
+$("#fullscreenButton").on('click', function () {
+  if (isFullscreen) {
+    $(".ascii-display").removeClass("ascii-fullscreen-display")
+    $("#fullscreenButton").removeClass("fullscreenButton-fullscreen")
+    $("#fullscreenButton").addClass("fullscreenButton-closed")
+    isFullscreen = false
   }
-}
+  else {
+    $(".ascii-display").addClass("ascii-fullscreen-display")
+    $("#fullscreenButton").addClass("fullscreenButton-fullscreen")
+    $("#fullscreenButton").removeClass("fullscreenButton-closed")
+    isFullscreen = true
+  }
+})
