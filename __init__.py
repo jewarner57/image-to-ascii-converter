@@ -16,4 +16,4 @@ ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 UPLOAD_FOLDER = "./static/images/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 # set max image upload size
-app.config["MAX_CONTENT_LENGTH"] = 4 * 1024 * 1024
+app.config["MAX_CONTENT_LENGTH"] = 2 * 1024 * 1024

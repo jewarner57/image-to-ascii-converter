@@ -78,7 +78,7 @@ def createImage():
     )
 
     filename = "./static/images/conversions/conversion.png"
-    img.save(filename, quality=80)
+    img.save(filename)
 
     return send_file(filename, mimetype="image/png")
 

@@ -18,7 +18,7 @@ def create_gif_from_images(images, backgroundColor, fontFamilyNumber, textColor)
     for image in images:
         createdImages.append(
             create_image_from_ascii_string(
-                image, backgroundColor, fontFamilyNumber, textColor
+                image, backgroundColor, fontFamilyNumber, textColor, 4
             )
         )
 
@@ -27,7 +27,7 @@ def create_gif_from_images(images, backgroundColor, fontFamilyNumber, textColor)
         filename,
         save_all=True,
         append_images=createdImages,
-        duration=40,
+        duration=100,
     )
 
     return filename
@@ -43,7 +43,7 @@ def make_gif_ascii_string(image_path, character_key, width=80, height=None):
     firstImage = make_image_ascii_string(gifImage, character_key, width, height)
     frames = []
 
-    for frame in range(0, gifImage.n_frames):
+    for frame in range(0, gifImage.n_frames, 2):
         gifImage.seek(frame)
         frames.append(make_image_ascii_string(gifImage, character_key, width, height))
 
@@ -53,7 +53,7 @@ def make_gif_ascii_string(image_path, character_key, width=80, height=None):
 
 
 def create_image_from_ascii_string(
-    image_text, backgroundColor, fontFamilyNumber, textColor
+    image_text, background_color, font_family_number, text_color, font_size=15
 ):
     # Create the image with the correct background color
     # Set the size to be the character width * number of characters
@@ -68,14 +68,14 @@ def create_image_from_ascii_string(
 
     imageHeight = len(image_text)
     imageWidth = len(image_text[0])
-    fontSize = 20
-    fontName = fonts.get(int(fontFamilyNumber))
+    fontSize = font_size
+    fontName = fonts.get(int(font_family_number))
     fontWidth = fontSize * 0.5
 
     img = Image.new(
         "RGB",
         (int(fontWidth * imageWidth * 1.5), int(imageHeight * fontSize)),
-        color=backgroundColor,
+        color=background_color,
     )
 
     # Get the chosen font
@@ -90,7 +90,7 @@ def create_image_from_ascii_string(
     for r in range(0, imageHeight - 1):
         for c in range(0, imageWidth - 1):
 
-            if textColor == "Black":
+            if text_color == "Black":
                 fontColor = (0, 0, 0)
             else:
                 fontColor = tuple(image_text[r][c].get("color"))
