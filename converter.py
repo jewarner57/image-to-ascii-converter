@@ -24,10 +24,7 @@ def create_gif_from_images(images, backgroundColor, fontFamilyNumber, textColor)
 
     filename = "./static/images/conversions/gifConversion.gif"
     createdImages[0].save(
-        filename,
-        save_all=True,
-        append_images=createdImages,
-        duration=100,
+        filename, save_all=True, append_images=createdImages, duration=100, loop=0
     )
 
     return filename
