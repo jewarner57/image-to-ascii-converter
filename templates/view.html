@@ -119,12 +119,8 @@
 {% block scripts %}
 <script>
   const imageData = {{ imageData| safe }};
-</script>
-<script>
   const isAnimated = {{ isAnimated| safe }};
 </script>
-<!-- html2 canvas for saving ascii text div as an image -->
-<script type="text/javascript" src="../static/html2canvas.js"></script>
 <!-- custom js -->
 <script type="text/javascript" src="../static/view-settings.js"></script>
 {% endblock scripts %}
