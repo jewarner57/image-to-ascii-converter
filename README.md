@@ -15,7 +15,7 @@ A web app for converting color images to beautiful ascii art with maximum freedo
   * Change size, colors, fonts, character sets, and more with a UI designed specifically with ascii conversion in mind.
 
 ## Live project link
-* Visit [imgtoascii.herokuapp.com](https://imgtoascii.herokuapp.com/) to try it out.
+* Visit [image-to-ascii.dev.jonathanewarner.com](http://image-to-ascii.dev.jonathanewarner.com/) to try it out.
 
 ![Balloon Image in ASCII](./static/images/docs-images/readme-example.png)
 
