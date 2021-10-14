@@ -18,7 +18,7 @@ def create_gif_from_images(images, backgroundColor, fontFamilyNumber, textColor)
     for image in images:
         createdImages.append(
             create_image_from_ascii_string(
-                image, backgroundColor, fontFamilyNumber, textColor, 4
+                image, backgroundColor, fontFamilyNumber, textColor, 8
             )
         )
 

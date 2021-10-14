@@ -1,4 +1,4 @@
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fimgtoascii.herokuapp.com%2F) 
+![Website](https://img.shields.io/website?url=http%3A%2F%2Fimage-to-ascii.dev.jonathanewarner.com%2F)
 ![GitHub repo size](https://img.shields.io/github/repo-size/jewarner57/image-to-ascii-converter)  
 # Img To Ascii  
 ![Logo](./static/images/logo-image.png)
@@ -33,8 +33,10 @@ A web app for converting color images to beautiful ascii art with maximum freedo
   * Easy to use UI with extensive customization
   * Full control over size, fonts, colors, and characters
   * Custom character sets allow for full control over the final product.
-  * Conversion for image files up to 1 mb in size in online demo
+  * Conversion for image files up to 3 mb in size in online demo
     * You can increase the limit when running the project locally by changing MAX_CONTENT_LENGTH in the root \_\_init\_\_.py to a larger value.
+  * Animated GIF conversion.
+    * Convert your favorite gifs into animated ascii art.
 
 ---
 
@@ -62,6 +64,7 @@ Without Docker
 
 ![Mando Image in ASCII](./static/images/docs-images/starwars-docs-example.gif)
 
+![Dancing Bear GIF in ASCII](./static/images/docs-images/dancing-bear.gif)
 ---
 
 ##  <a name='Technologiesused'></a>Technologies used
