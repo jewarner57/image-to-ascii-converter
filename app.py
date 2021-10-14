@@ -90,59 +90,56 @@ def convert():
 
         # upload an image from the user
         image_info = uploadImage(request)
-        image_filepath = image_info.get("filepath")
-        image_extension = image_info.get("extension")
 
-        # if the user uploaded a valid image
-        if image_filepath is not None:
-
-            char_key = request.form.get("charkey")
-
-            image_width = int(request.form.get("image-width"))
-            image_height = request.form.get("image-height")
-
-            if char_key == "" or char_key == None:
-                char_key = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
-            else:
-                char_key = char_key.split(" ")
-
-                # create the ascii art from the image
-                if image_extension == "gif":
-                    gif_ascii_data = make_gif_ascii_string(
-                        image_filepath,
-                        char_key,
-                        image_width,
-                        image_height,
-                    )
-
-                    ascii_art = gif_ascii_data.get("previewImage")
-                    ascii_art_data = gif_ascii_data.get("frames")
-                else:
-                    ascii_art = make_image_ascii_string(
-                        image_filepath,
-                        char_key,
-                        image_width,
-                        image_height,
-                    )
-                    ascii_art_data = ascii_art
-
-            # remove the image
-            os.remove(image_filepath)
-
-            # the ascii image string
-            context = {
-                "asciiImage": ascii_art,
-                "imageData": json.dumps(ascii_art_data),
-                "isAnimated": json.dumps(image_extension == "gif"),
-            }
-
-            return render_template("view.html", **context)
-        else:
+        if not image_info:
             flash("No Image Selected.")
             return redirect(url_for("convert"))
 
-    else:
+        image_filepath = image_info.get("filepath")
+        image_extension = image_info.get("extension")
 
+        char_key = request.form.get("charkey")
+
+        image_width = int(request.form.get("image-width"))
+        image_height = request.form.get("image-height")
+
+        if char_key == "" or char_key == None:
+            char_key = [".", ",", "*", "/", "(", "#", "%", "&", "@"]
+        else:
+            char_key = char_key.split(" ")
+
+            # create the ascii art from the image
+            if image_extension == "gif":
+                gif_ascii_data = make_gif_ascii_string(
+                    image_filepath,
+                    char_key,
+                    image_width,
+                    image_height,
+                )
+
+                ascii_art = gif_ascii_data.get("previewImage")
+                ascii_art_data = gif_ascii_data.get("frames")
+            else:
+                ascii_art = make_image_ascii_string(
+                    image_filepath,
+                    char_key,
+                    image_width,
+                    image_height,
+                )
+                ascii_art_data = ascii_art
+
+        # remove the image
+        os.remove(image_filepath)
+
+        # the ascii image string
+        context = {
+            "asciiImage": ascii_art,
+            "imageData": json.dumps(ascii_art_data),
+            "isAnimated": json.dumps(image_extension == "gif"),
+        }
+
+        return render_template("view.html", **context)
+    else:
         context = {
             "uploadSize": int(current_app.config["MAX_CONTENT_LENGTH"] / 1024 / 1024),
             "allowedExtensions": current_app.config["ALLOWED_EXTENSIONS"],
