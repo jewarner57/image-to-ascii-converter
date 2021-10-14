@@ -144,7 +144,8 @@ def convert():
     else:
 
         context = {
-            "uploadSize": int(current_app.config["MAX_CONTENT_LENGTH"] / 1024 / 1024)
+            "uploadSize": int(current_app.config["MAX_CONTENT_LENGTH"] / 1024 / 1024),
+            "allowedExtensions": current_app.config["ALLOWED_EXTENSIONS"],
         }
 
         return render_template("convert.html", **context)

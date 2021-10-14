@@ -176,6 +176,11 @@ body {
     border-radius: 15px;
 }
 
+.dimension-slider-title {
+  display: flex;
+  justify-content: space-between;
+}
+
 .theme-button {
     background-color: #4c7aaf;
     padding: 10px 20px;
@@ -221,8 +226,8 @@ body {
 }
 
 .setting-container {
-    background-color: #8383830c;
-    padding: 20px;
+    background-color: #f5f5f5;
+    padding: 40px 20px;
     border-radius: 20px;
 }
 
@@ -243,6 +248,12 @@ body {
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 5px;
+    transition: all 0.3s ease-in;
+}
+
+.imageUpload:hover {
+  transition: all 0.3s ease-out;
+  background-color: #d3d3d3;
 }
 
 .size-preview {
@@ -286,4 +297,8 @@ input[type=checkbox] {
   100% {
     background-position: 100% 0%;
   }
+}
+
+.text-bold {
+  font-weight: 500;
 }

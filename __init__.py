@@ -11,6 +11,7 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 # set allowed upload extensions
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+app.config["ALLOWED_EXTENSIONS"] = ALLOWED_EXTENSIONS
 
 # set image upload folder
 UPLOAD_FOLDER = "./static/images/uploads"

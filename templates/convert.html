@@ -3,39 +3,40 @@
 
 <section>
   <div class="col-12 py-5">
-    <h1 class="text-center">Conversion Settings</h1>
     <div class="col-xlg-4 col-lg-6 col-md-8 offset-lg-3 offset-xlg-4 offset-md-2">
       <form method='POST' class="form-group" enctype="multipart/form-data">
         <fieldset class="setting-container">
+          <h1 class="text-center mb-4">Conversion Settings</h1>
 
           <!-- width range slider -->
-          <label for="image-width">Width In Number of Characters:</label>
+          <div class="dimension-slider-title">
+            <label for="image-width">Output Image Width:</label>
+            <span id="output-width"></span>
+          </div>
           <div class="input-tooltip-wrapper pb-2">
             <input type="range" min="10" max="200" value="100" class="slider" id="image-width" name="image-width">
             <!-- custom width tooltip -->
             <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip" data-placement="top"
-              title="Increasing size increases detail.">
+              title="Detail of output image increases with size">
               ?
             </button>
           </div>
 
           <!-- height range slider -->
           <div id="height-slider-container">
-            <label for="image-height">Height In Number of Lines:</label>
+            <div class="dimension-slider-title">
+              <label for="image-height">Output Image Height:</label>
+              <span id="output-height"></span>
+            </div>
             <div class="input-tooltip-wrapper">
               <input type="range" min="10" max="200" value="50" class="slider" id="image-height" name="image-height">
-              <!-- custom height tooltip -->
-              <button type="button" class="btn btn-secondary ml-2 px-1 py-0" data-toggle="tooltip" data-placement="top"
-                title="setting height to one half of the width works well for landscape images.">
-                ?
-              </button>
             </div>
           </div>
           <!-- auto set height checkbox -->
           <div class="form-check mt-2 ml-2">
             <input type="checkbox" class="form-check-input" id="proportionalheight">
-            <label class="form-check-label ml-2" for="proportionalheight" name="auto-set-height">Auto
-              Determine Height</label>
+            <label class="form-check-label ml-2" for="proportionalheight" name="auto-set-height">Use relative
+              height.</label>
           </div>
 
           <div class="setting-wrapper my-5">
@@ -59,8 +60,8 @@
                 <!-- default charkey dropdown menu -->
                 <div class="col-12 col-lg-7">
                   <select name="charkey" id="charkeydropdown" class="setting-toggle-select form-control col-12">
-                    <option value=". , * / ( # % & @">Symbols Classic</option>
-                    <option value="@ & % # ( / * , .">Symbols Inverted</option>
+                    <option value="@ & % # ( / * , .">@ & % # ( / * , .</option>
+                    <option value=". , * / ( # % & @">. , * / ( # % & @</option>
                   </select>
                 </div>
               </div>
@@ -89,7 +90,11 @@
             <input type="file" class="btn-secondary btn form-control-file m-2" id="image-upload" name="image"
               accept="image/*" value="{{image}}" multiple="false">
           </div>
-          <p>Max upload size is: <span id="maxUpload">{{uploadSize}}</span> Megabytes</p>
+          <p class="mt-3 mb-1">Max upload size is: <span id="maxUpload" class="text-bold">{{uploadSize}}
+              Megabytes</span></p>
+          <p class="my-1">Accepted file types are: {% for ext in allowedExtensions %}<span class="text-bold">{{ext}},
+            </span>{% endfor %}
+          </p>
 
           <div class="progress my-3 hidden" id="conversion-progress">
             <div class="loading-bar"></div>
