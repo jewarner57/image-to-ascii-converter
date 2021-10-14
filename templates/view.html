@@ -2,101 +2,106 @@
 {% block content %}
 
 <section>
-  <div class="col-12 py-5">
-    <h1 class="text-center">Color and Text Settings</h1>
+  <div class="col-12 py-4">
     <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-3">
-      <form class="form-group"></form>
+      <form class="form-group setting-container">
+        <h1 class="text-center">Color and Text Settings</h1>
 
-      <p class="text-center">Font Settings</p>
-
-      <!-- font family dropdown -->
-      <label for="font-family">Font:</label>
-      <select id="font-family" class="form-control mb-3">
-        <option value="1">Source Code Pro</option>
-        <option value="2">Courier New</option>
-        <option value="3">DM Mono</option>
-        <option value="4">Space Mono</option>
-        <option value="5">Roboto Mono</option>
-      </select>
-
-      <!-- font weight range slider -->
-      <label for="font-weight">Font Weight:</label>
-      <div class="input-tooltip-wrapper">
-        <input type="range" min="100" max="900" value="800" step="100" class="slider col-10" id="font-weight">
-        <!-- custom font weight tooltip -->
-        <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip" data-placement="top"
-          title="Increasing font weight increases brightness.">
-          ?
-        </button>
-      </div>
-      <p class="text-center mt-4 mb-0">Color Settings</p>
-
-      <div class="color-settings">
-
-        <div class="setting-toggle-wrapper">
-          <label for="setting-toggle-color">Font Color:</label>
-          <select class="form-control" id="setting-toggle-color">
-            <option>Color</option>
-            <option>Black</option>
+        <div class="view-setting">
+          <!-- font family dropdown -->
+          <label for="font-family">Font:</label>
+          <select id="font-family" class="form-control">
+            <option value="1">Source Code Pro</option>
+            <option value="2">Courier New</option>
+            <option value="3">DM Mono</option>
+            <option value="4">Space Mono</option>
+            <option value="5">Roboto Mono</option>
           </select>
         </div>
 
+        <div class="view-setting">
+          <!-- Font color -->
+          <div class="setting-toggle-wrapper">
+            <label for="setting-toggle-color">Font Color:</label>
+            <select class="form-control" id="setting-toggle-color">
+              <option>Color</option>
+              <option>Black</option>
+            </select>
+          </div>
+        </div>
 
-        <div class="color-picker mt-3">
-          <label for="background-color">Background Color:</label>
+        <div class="view-setting">
+          <!-- font weight range slider -->
+          <label for="font-weight">Font Weight:</label>
           <div class="input-tooltip-wrapper">
-            <input type="color" id="background-color" value="#ffffff" class="ml-2 color-input col-10">
-            <!-- custom background color tooltip -->
+            <input type="range" min="100" max="900" value="800" step="100" class="slider" id="font-weight">
+            <!-- custom font weight tooltip -->
             <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip"
-              data-placement="top" title="Black is a good choice for full color images.">
+              data-placement="top" title="Increasing font weight increases brightness.">
               ?
             </button>
           </div>
         </div>
-      </div>
 
-      <p class="text-center mt-4 mb-0">Image Preview</p>
-      <div class="ascii-display-container">
-        <div id="fullscreenButton" class="fullscreenButton-closed">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24">
-            <path
-              d="M24 9h-2v-5h-7v-2h9v7zm-9 13v-2h7v-5h2v7h-9zm-15-7h2v5h7v2h-9v-7zm9-13v2h-7v5h-2v-7h9zm11 4h-16v12h16v-12z" />
-          </svg>
-        </div>
-        <div id="fullscreen-zoom" class="fullscreen-zoom-closed">
-          <input type="range" min="0.1" max="2" value="1" step="0.05" class="slider" id="fullscreen-zoom-slider">
-        </div>
-        <div class="ascii-display">
-          <div id="ascii-text-wrapper">
-            {% for row in asciiImage %}
-            <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}">{{pixel.char}}</span>{% endfor %}</p>
-            {% endfor %}
+        <div class="view-setting">
+          <!-- Background Color -->
+          <div class="color-picker">
+            <label for="background-color">Background Color:</label>
+            <div class="input-tooltip-wrapper">
+              <input type="color" id="background-color" value="#ffffff" class="color-input">
+              <!-- custom background color tooltip -->
+              <button type="button" class="btn btn-secondary ml-2 col-1 py-0 px-1" data-toggle="tooltip"
+                data-placement="top" title="Black is a good choice for full color images.">
+                ?
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <p class="text-center mt-4">Export Your Art</p>
-      <div>
 
-        <div class="theme-button mb-3" id="image-download"><i class="material-icons mr-2"
-            id="upload-icon">image</i>Export to file
+        <p class="text-center mt-4 mb-0">Image Preview</p>
+        <div class="ascii-display-container">
+          <div id="fullscreenButton" class="fullscreenButton-closed">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24">
+              <path
+                d="M24 9h-2v-5h-7v-2h9v7zm-9 13v-2h7v-5h2v7h-9zm-15-7h2v5h7v2h-9v-7zm9-13v2h-7v5h-2v-7h9zm11 4h-16v12h16v-12z" />
+            </svg>
+          </div>
+          <div id="fullscreen-zoom" class="fullscreen-zoom-closed">
+            <input type="range" min="0.1" max="2" value="1" step="0.05" class="slider" id="fullscreen-zoom-slider">
+          </div>
+          <div class="ascii-display">
+            <div id="ascii-text-wrapper">
+              {% for row in asciiImage %}
+              <p>{% for pixel in row %}<span style="color: rgb{{pixel.color}}">{{pixel.char}}</span>{% endfor %}</p>
+              {% endfor %}
+            </div>
+          </div>
         </div>
 
-        <div class="hidden pb-2" id="image-download-prompt">
-          <div class="loading-bar mb-2"></div>
-          <p>Please allow up to a minute for your image to process. Your image will be downloaded automatically.</p>
-        </div>
+        <p class="text-center mt-4">Export Your Art</p>
+        <div>
 
-        <div class="pb-2">
-          <p class="errorText text-center" id="download-error"></p>
-        </div>
+          <div class="theme-button mb-3" id="image-download"><i class="material-icons mr-2"
+              id="upload-icon">image</i>Export to File
+          </div>
+
+          <div class="hidden pb-2" id="image-download-prompt">
+            <div class="loading-bar mb-2"></div>
+            <p>Please allow up to a minute for your image to process. Your image will be downloaded automatically.</p>
+          </div>
+
+          <div class="pb-2">
+            <p class="errorText text-center" id="download-error"></p>
+          </div>
 
 
-        <div class="theme-button" id="clipboard-copy"><i class="material-icons mr-2"
-            id="upload-icon">content_copy</i>Copy Text To
-          Clipboard
+          <div class="theme-button" id="clipboard-copy"><i class="material-icons mr-2"
+              id="upload-icon">content_copy</i>Copy Text To
+            Clipboard
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </section>
